@@ -2,8 +2,86 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Med Life Dental — Clinică Stomatologică Premium</title>
+<meta name="description" content="Clinică stomatologică premium din București. 15 ani, 20.000+ pacienți. Implantologie Straumann, Smile Design 3D, Invisalign. Prima consultație gratuită.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medlifedental.ro/">
+<meta property="og:title" content="Med Life Dental — Clinică Stomatologică Premium București">
+<meta property="og:description" content="Clinică stomatologică premium din București. 15 ani, 20.000+ pacienți. Implantologie Straumann, Smile Design 3D, Invisalign. Prima consultație gratuită.">
+<meta property="og:image" content="https://medlifedental.ro/og-image.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DentalClinic",
+  "name": "Med Life Dental",
+  "url": "https://medlifedental.ro/",
+  "logo": "https://medlifedental.ro/favicon.svg",
+  "image": "https://medlifedental.ro/og-image.svg",
+  "description": "Clinică stomatologică premium din București. 15 ani de experiență, 20.000+ pacienți. Implantologie Straumann, Smile Design 3D, Invisalign.",
+  "telephone": "0800123456",
+  "priceRange": "$$",
+  "currenciesAccepted": "RON",
+  "paymentAccepted": "Cash, Card, Asigurare",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Str. Mihai Eminescu 42",
+    "addressLocality": "București",
+    "addressRegion": "Sector 2",
+    "postalCode": "020073",
+    "addressCountry": "RO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 44.4396,
+    "longitude": 26.1030
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "15:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "2400",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicii Stomatologice",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Implantologie Dentară" } },
+      { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Smile Design Digital" } },
+      { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Ortodonție Invisalign" } },
+      { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Estetică Dentară" } },
+      { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Chirurgie Laser Fotona" } },
+      { "@type": "Offer", "itemOffered": { "@type": "MedicalProcedure", "name": "Protetică CAD/CAM" } }
+    ]
+  },
+  "medicalSpecialty": "Dentistry",
+  "sameAs": [
+    "https://www.facebook.com/medlifedental",
+    "https://www.instagram.com/medlifedental"
+  ],
+  "founder": {
+    "@type": "Physician",
+    "name": "Dr. Radu Constantin",
+    "jobTitle": "Implantolog Senior, Fondator"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -100,6 +178,18 @@
   .hg-stat-1{top:14px;left:4px}
   .hg-stat-2{bottom:18px;right:4px}
 }
+@media(max-width:480px){
+  .hero.hero-globe-layout{padding:100px 16px 48px;gap:28px}
+  .hero h1{font-size:clamp(36px,10vw,52px)}
+  .hero-sub{font-size:16px}
+  .hero-globe-wrap{width:220px;height:220px}
+  .hg-stat{padding:8px 12px;gap:6px}
+  .hg-stat-ico{width:26px;height:26px;font-size:13px}
+  .hg-stat-val{font-size:14px}
+  .hg-stat-lbl{font-size:10px}
+  .hg-stat-1{top:8px;left:2px}
+  .hg-stat-2{bottom:10px;right:2px}
+}
 </style>
 </head>
 <body>
@@ -125,8 +215,8 @@
   </ul>
 
   <div class="nav-actions">
-    <button class="btn-ghost" onclick="location.href='galerie.html'">Galerie</button>
-    <button class="btn-primary" onclick="location.href='contact.html'">Programare Online</button>
+    <a href="galerie.html" class="btn-ghost">Galerie</a>
+    <a href="contact.html" class="btn-primary">Programare Online</a>
   </div>
   <button class="nav-burger" aria-label="Deschide meniu">
     <span></span><span></span><span></span>
@@ -143,15 +233,15 @@
       Med Life Dental &mdash; 15 Ani de Excelență Stomatologică
     </div>
 
-    <h1><span>Zâmbetul tau,<br>arta noastra.</span></h1>
+    <h1><span>Zâmbetul tău,<br>arta noastră.</span></h1>
 
     <p class="hero-sub">
-      Clinică Med Life Dental combina tehnologia de ultima generație cu expertiza medicilor nostri pentru a crea zâmbete care dureaza o viață. De la implantologie avansată la Smile Design digital, suntem alături de tine la fiecare pas al transformării.
+      Clinica Med Life Dental combină tehnologia de ultimă generație cu expertiza medicilor noștri pentru a crea zâmbete care durează o viață. De la implantologie avansată la Smile Design digital, suntem alături de tine la fiecare pas al transformării.
     </p>
 
     <div class="hero-ctas">
-      <button class="btn-hero-primary">Programează Consultația</button>
-      <button class="btn-hero-ghost">Descoperă Tratamentele</button>
+      <a href="contact.html" class="btn-hero-primary">Programează Consultația</a>
+      <a href="tratamente.html" class="btn-hero-ghost">Descoperă Tratamentele</a>
     </div>
   </div>
 
@@ -164,7 +254,7 @@
 
       <!-- Floating stat 1 -->
       <div class="hg-stat hg-stat-1">
-        <div class="hg-stat-ico" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <div class="hg-stat-ico ico-indigo">&#129463;</div>
         <div>
           <div class="hg-stat-val">20.000+</div>
           <div class="hg-stat-lbl">Pacienți tratați</div>
@@ -173,7 +263,7 @@
 
       <!-- Floating stat 2 -->
       <div class="hg-stat hg-stat-2">
-        <div class="hg-stat-ico" style="background:rgba(63,207,142,0.12)">&#9733;</div>
+        <div class="hg-stat-ico ico-green">&#9733;</div>
         <div>
           <div class="hg-stat-val" style="color:#3FCF8E">4.9 &#9733;</div>
           <div class="hg-stat-lbl">2.400+ recenzii</div>
@@ -198,17 +288,17 @@
         <div class="feature-item">
           <div class="feature-badge">Implantologie Avansată</div>
           <h3>Implanturi cu rată de succes 98.7%</h3>
-          <p>Folosim implanturi premium Straumann si Nobel Biocare. Proceduri All-on-4 si All-on-6 disponibile &mdash; restaurare completă a arcadei într-o singură zi, sub anestezie totală confortabilă.</p>
+          <p>Folosim implanturi premium Straumann și Nobel Biocare. Proceduri All-on-4 și All-on-6 disponibile &mdash; restaurare completă a arcadei într-o singură zi, sub anestezie totală confortabilă.</p>
         </div>
         <div class="feature-item">
           <div class="feature-badge green">Nou</div>
           <h3>Smile Design Digital 3D</h3>
-          <p>Vizualizeaza-ti noul zâmbet înainte de orice tratament. Simulam rezultatul final cu precizie milimetrica folosind software DSD si scanner intraoral 3D de ultima generație.</p>
+          <p>Vizualizează-ți noul zâmbet înainte de orice tratament. Simulăm rezultatul final cu precizie milimetrică folosind software DSD și scanner intraoral 3D de ultimă generație.</p>
         </div>
         <div class="feature-item">
           <div class="feature-badge">Ortodonție Invizibilă</div>
           <h3>Alinere Invisalign &amp; aparate estetice</h3>
-          <p>Tratamente ortodontice discrete, confortabile si eficiente. Rezultate vizibile de la prima luna, fără sacrificii estetice pe durată întregului tratament.</p>
+          <p>Tratamente ortodontice discrete, confortabile și eficiente. Rezultate vizibile de la prima lună, fără sacrificii estetice pe durata întregului tratament.</p>
         </div>
       </div>
 
@@ -223,40 +313,40 @@
         <div class="mock-body">
           <div class="roadmap">
             <div class="roadmap-row">
-              <div class="mock-avatar" style="background:#5E6AD2;font-size:10px">1</div>
+              <div class="mock-avatar av-indigo" style="font-size:10px">1</div>
               <span style="font-size:12px;flex:1">Consultație &amp; Radiografie CBCT 3D</span>
               <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:100%"></div></div>
               <span class="roadmap-label" style="color:#3FCF8E">Finalizat</span>
             </div>
             <div class="roadmap-row">
-              <div class="mock-avatar" style="background:#3FCF8E;font-size:10px">2</div>
+              <div class="mock-avatar av-green" style="font-size:10px">2</div>
               <span style="font-size:12px;flex:1">Smile Design Digital &amp; Simulare 3D</span>
               <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:100%;background:#3FCF8E"></div></div>
               <span class="roadmap-label" style="color:#3FCF8E">Finalizat</span>
             </div>
             <div class="roadmap-row">
-              <div class="mock-avatar" style="background:#F97316;font-size:10px">3</div>
+              <div class="mock-avatar av-orange" style="font-size:10px">3</div>
               <span style="font-size:12px;flex:1">Pregătire os &mdash; Grefare sinusala</span>
               <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:100%;background:#F97316"></div></div>
               <span class="roadmap-label" style="color:#3FCF8E">Finalizat</span>
             </div>
             <div class="roadmap-row">
-              <div class="mock-avatar" style="background:#8B5CF6;font-size:10px">4</div>
+              <div class="mock-avatar av-purple" style="font-size:10px">4</div>
               <span style="font-size:12px;flex:1">Inserare implanturi Straumann</span>
               <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:75%;background:#8B5CF6"></div></div>
               <span class="roadmap-label">In curs</span>
             </div>
             <div class="roadmap-row">
-              <div class="mock-avatar" style="background:#EC4899;font-size:10px">5</div>
+              <div class="mock-avatar av-pink" style="font-size:10px">5</div>
               <span style="font-size:12px;flex:1">Montare coroane ceramice CAD/CAM</span>
               <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:0%;background:#EC4899"></div></div>
-              <span class="roadmap-label">Planificât</span>
+              <span class="roadmap-label">Planificat</span>
             </div>
             <div class="roadmap-row">
-              <div class="mock-avatar" style="background:#FEBC2E;font-size:10px;color:#000">6</div>
+              <div class="mock-avatar av-yellow" style="font-size:10px">6</div>
               <span style="font-size:12px;flex:1">Control final &amp; Fotografie caz</span>
               <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:0%;background:#FEBC2E"></div></div>
-              <span class="roadmap-label">Planificât</span>
+              <span class="roadmap-label">Planificat</span>
             </div>
           </div>
         </div>
@@ -271,36 +361,36 @@
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-card-tag tag-new">Premium</div>
-        <div class="feature-card-icon" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <div class="feature-card-icon ico-indigo">&#129463;</div>
         <h3>Implantologie</h3>
-        <p>Implanturi Straumann &amp; Nobel Biocare cu garanție pe viață. Rată de succes 98.7% confirmata in 15 ani de practica.</p>
+        <p>Implanturi Straumann &amp; Nobel Biocare cu garanție pe viață. Rată de succes 98.7% confirmată în 15 ani de practică.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(63,207,142,0.12)">&#10024;</div>
-        <h3>Estetică Dentara</h3>
-        <p>Fațete din ceramica, coroane integral ceramice, albire profesionala cu laser &mdash; rezultate spectaculoase in 2 ședințe.</p>
+        <div class="feature-card-icon ico-green">&#10024;</div>
+        <h3>Estetică Dentară</h3>
+        <p>Fațete din ceramică, coroane integral ceramice, albire profesională cu laser &mdash; rezultate spectaculoase în 2 ședințe.</p>
       </div>
       <div class="feature-card">
         <div class="feature-card-tag tag-new">Nou</div>
-        <div class="feature-card-icon" style="background:rgba(249,115,22,0.12)">&#128247;</div>
+        <div class="feature-card-icon ico-orange">&#128247;</div>
         <h3>Smile Design 3D</h3>
-        <p>Proiectam zâmbetul ideal digital înainte de orice intervenție. Vezi rezultatul final înainte sa inceapa tratamentul.</p>
+        <p>Proiectăm zâmbetul ideal digital înainte de orice intervenție. Vezi rezultatul final înainte să înceapă tratamentul.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(139,92,246,0.12)">&#128200;</div>
+        <div class="feature-card-icon ico-purple">&#128200;</div>
         <h3>Ortodonție</h3>
-        <p>Aparate metalice, ceramice, linguale si alinere Invisalign. Tratamente pentru copii de la 7 ani si adulti de orice vârstă.</p>
+        <p>Aparate metalice, ceramice, linguale și alinere Invisalign. Tratamente pentru copii de la 7 ani și adulți de orice vârstă.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(236,72,153,0.12)">&#128100;</div>
+        <div class="feature-card-icon ico-pink">&#128100;</div>
         <h3>Stomatologie Pediatrică</h3>
-        <p>Cabinete special amenajate pentru copii, medici cu specializare pediatrică si atmosfera prietenoasă fără frică de dentist.</p>
+        <p>Cabinete special amenajate pentru copii, medici cu specializare pediatrică și atmosferă prietenoasă fără frică de dentist.</p>
       </div>
       <div class="feature-card">
         <div class="feature-card-tag tag-new">24/7</div>
-        <div class="feature-card-icon" style="background:rgba(254,188,46,0.12)">&#128680;</div>
+        <div class="feature-card-icon ico-yellow">&#128680;</div>
         <h3>Urgențe Dentare</h3>
-        <p>Linie directa pentru urgențe disponibila non-stop. Răspuns in maxim 30 minute, cabinet de urgență dedicât.</p>
+        <p>Linie directă pentru urgențe disponibilă non-stop. Răspuns în maxim 30 minute, cabinet de urgență dedicat.</p>
       </div>
     </div>
   </div>
@@ -310,11 +400,11 @@
 <section class="quote-section">
   <div class="quote-wrap">
     <div class="quote-logo">
-      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#5E6AD2,#8B5CF6)">A</div>
+      <div class="quote-logo-dot ql-indigo">A</div>
       Andreea M., 34 ani &mdash; Pacient
     </div>
     <blockquote>
-      Am venit cu teama si am plecat cu cel mai frumos zâmbet din viață mea. Echipa Med Life m-a ghidat pas cu pas prin întregul tratament de implanturi, iar rezultatul a depășit orice așteptare. In sfârșit râd cu gură până la urechi.
+      Am venit cu teamă și am plecat cu cel mai frumos zâmbet din viața mea. Echipa Med Life m-a ghidat pas cu pas prin întregul tratament de implanturi, iar rezultatul a depășit orice așteptare. În sfârșit râd cu gura până la urechi.
     </blockquote>
     <p class="quote-author">Tratament: Implanturi All-on-4 + Fațete ceramice &mdash; durată 4 luni</p>
   </div>
@@ -328,7 +418,7 @@
     <div style="margin-bottom:64px">
       <div class="section-label">Rezultate</div>
       <h2 class="section-title">Cifre care vorbesc de la sine</h2>
-      <p class="section-sub">15 ani de excelență stomatologică concentrati in date concrete. Fiecare numarul reprezinta un pacient mulțumit.</p>
+      <p class="section-sub">15 ani de excelență stomatologică concentrați în date concrete. Fiecare număr reprezintă un pacient mulțumit.</p>
     </div>
 
     <div class="feature-split reverse">
@@ -341,22 +431,22 @@
           <span class="mock-title">Dashboard Clinică &mdash; Iunie 2024</span>
         </div>
         <div class="mock-body">
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
-            <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px">
-              <div style="font-size:18px;font-weight:700;letter-spacing:-0.03em">487</div>
-              <div style="font-size:10px;color:var(--text3)">Consultații / luna</div>
+          <div class="dash-kpi-grid">
+            <div class="dash-kpi">
+              <div class="dash-kpi-val">487</div>
+              <div class="dash-kpi-label">Consultații / lună</div>
             </div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px">
-              <div style="font-size:18px;font-weight:700;letter-spacing:-0.03em;color:#3FCF8E">+22%</div>
-              <div style="font-size:10px;color:var(--text3)">vs. luna trecuta</div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-val" style="color:#3FCF8E">+22%</div>
+              <div class="dash-kpi-label">vs. luna trecută</div>
             </div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px">
-              <div style="font-size:18px;font-weight:700;letter-spacing:-0.03em">4.9 &#9733;</div>
-              <div style="font-size:10px;color:var(--text3)">Rating mediu</div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-val">4.9 &#9733;</div>
+              <div class="dash-kpi-label">Rating mediu</div>
             </div>
           </div>
-          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;padding:12px">
-            <div style="font-size:10px;color:var(--text3);margin-bottom:10px">Programari pe zi &mdash; Iunie 2024</div>
+          <div class="dash-chart-wrap">
+            <div class="dash-chart-title">Programări pe zi &mdash; Iunie 2024</div>
             <div class="chart-bars" style="height:80px">
               <div class="chart-bar" style="height:45%;background:rgba(94,106,210,0.4)"></div>
               <div class="chart-bar" style="height:70%;background:rgba(94,106,210,0.5)"></div>
@@ -374,14 +464,14 @@
               <div class="chart-bar" style="height:55%;background:rgba(94,106,210,0.4)"></div>
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-            <div style="background:rgba(63,207,142,0.06);border:1px solid rgba(63,207,142,0.15);border-radius:6px;padding:10px 12px">
-              <div style="font-size:13px;font-weight:600;color:#3FCF8E">98.7%</div>
-              <div style="font-size:10px;color:var(--text3)">Rată succes implanturi</div>
+          <div class="dash-mini-grid">
+            <div class="dash-mini-card green">
+              <div class="dash-mini-val green">98.7%</div>
+              <div class="dash-mini-label">Rată succes implanturi</div>
             </div>
-            <div style="background:rgba(94,106,210,0.06);border:1px solid rgba(94,106,210,0.2);border-radius:6px;padding:10px 12px">
-              <div style="font-size:13px;font-weight:600;color:#5E6AD2">20.000+</div>
-              <div style="font-size:10px;color:var(--text3)">Pacienți tratați total</div>
+            <div class="dash-mini-card accent">
+              <div class="dash-mini-val accent">20.000+</div>
+              <div class="dash-mini-label">Pacienți tratați total</div>
             </div>
           </div>
         </div>
@@ -389,19 +479,19 @@
 
       <div class="feature-list">
         <div class="feature-item">
-          <div class="feature-badge green">Realizari</div>
-          <h3>20.000+ pacienți tratați in 15 ani</h3>
-          <p>De la primul cabinet deschis in 2009, am crescut continuu. Astăzi tratăm peste 480 de pacienți lunar si avem o listă de așteptare de 3 săptămâni.</p>
+          <div class="feature-badge green">Realizări/div>
+          <h3>20.000+ pacienți tratați în 15 ani</h3>
+          <p>De la primul cabinet deschis în 2009, am crescut continuu. Astăzi tratăm peste 480 de pacienți lunar și avem o listă de așteptare de 3 săptămâni.</p>
         </div>
         <div class="feature-item">
           <div class="feature-badge">Implantologie</div>
-          <h3>5.000+ implanturi plașate cu succes</h3>
-          <p>Suntem lider regional in implantologie. 98.7% rată de succes, confirmat clinic, cu urmarire pe 10 ani a cazurilor finalizate.</p>
+          <h3>5.000+ implanturi plasate cu succes</h3>
+          <p>Suntem lider regional în implantologie. 98.7% rată de succes, confirmat clinic, cu urmărire pe 10 ani a cazurilor finalizate.</p>
         </div>
         <div class="feature-item">
-          <div class="feature-badge orange">Recunoastere</div>
+          <div class="feature-badge orange">Recunoaștere/div>
           <h3>4.9 stele din 2.400+ recenzii</h3>
-          <p>Cel mai bine cotat cabinet stomatologic din regiune pe Google, cu premiul "Best Dental Clinic Romania" acordat in 2022 si 2023.</p>
+          <p>Cel mai bine cotat cabinet stomatologic din regiune pe Google, cu premiul "Best Dental Clinic Romania" acordat în 2022 și 2023.</p>
         </div>
       </div>
     </div>
@@ -412,11 +502,11 @@
 <section class="quote-section">
   <div class="quote-wrap">
     <div class="quote-logo">
-      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#F97316,#FEBC2E)">M</div>
+      <div class="quote-logo-dot ql-orange">M</div>
       Mihai D., 52 ani &mdash; Pacient
     </div>
     <blockquote>
-      După 20 de ani in care am evitat dentistul din frică, am ales Med Life. Au avut rabdare cu mine, au explicât fiecare pas si acum am un zâmbet complet reconstituit. Nu mi-a parut rau nicio secundă.
+      După 20 de ani în care am evitat dentistul din frică, am ales Med Life. Au avut răbdare cu mine, au explicat fiecare pas și acum am un zâmbet complet reconstituit. Nu mi-a părut rău nicio secundă.
     </blockquote>
     <p class="quote-author">Tratament: Reconstrucție completă &mdash; 12 implanturi + proteza fixa &mdash; durată 8 luni</p>
   </div>
@@ -430,7 +520,7 @@
     <div style="margin-bottom:64px">
       <div class="section-label">Echipa</div>
       <h2 class="section-title">Specialiști dedicați întregii familii</h2>
-      <p class="section-sub">12 medici specialiști cu pregătire internațională, fiecare expert in domeniul sau. O echipa completă sub un singur acoperis.</p>
+      <p class="section-sub">12 medici specialiști cu pregătire internațională, fiecare expert în domeniul său. O echipă completă sub un singur acoperiș.</p>
     </div>
 
     <div class="feature-split">
@@ -438,22 +528,22 @@
         <div class="feature-item">
           <div class="feature-badge">Specialiști Seniori</div>
           <h3>Medici cu formare internațională</h3>
-          <p>Echipa noastra include absolvenți ai universitatilor din Viena, Paris si Milano, cu specializari in implantologie, chirurgie orala si ortodonție avansată.</p>
+          <p>Echipa noastră include absolvenți ai universităților din Viena, Paris și Milano, cu specializări în implantologie, chirurgie orală și ortodonție avansată.</p>
         </div>
         <div class="feature-item">
           <div class="feature-badge green">Pediatrie</div>
-          <h3>Cabinet dedicât copiilor</h3>
-          <p>Medici cu superspecializare in stomatologie pediatrică. Spatiu amenajat special pentru cei mici &mdash; fără frică, fără traume, cu rezultate excelente.</p>
+          <h3>Cabinet dedicat copiilor</h3>
+          <p>Medici cu superspecializare în stomatologie pediatrică. Spațiu amenajat special pentru cei mici &mdash; fără frică, fără traume, cu rezultate excelente.</p>
         </div>
         <div class="feature-item">
           <div class="feature-badge">Asigurări</div>
-          <h3>Decontare directa &mdash; 30+ asigurători</h3>
-          <p>Parteneri oficiali cu majoritatea caselor de asigurare din Romania. Decontezi direct la recepție, fără documente suplimentare.</p>
+          <h3>Decontare directă &mdash; 30+ asigurători</h3>
+          <p>Parteneri oficiali cu majoritatea caselor de asigurare din România. Decontezi direct la recepție, fără documente suplimentare.</p>
         </div>
         <div class="feature-item">
           <div class="feature-badge orange">Non-stop</div>
           <h3>Urgențe dentare 24 ore din 24</h3>
-          <p>Linie de urgență activa 24/7. Durere de dinte la 3 noaptea? Suntem disponibili &mdash; cabinet de urgență separat, acces imediat.</p>
+          <p>Linie de urgență activă 24/7. Durere de dinte la 3 noaptea? Suntem disponibili &mdash; cabinet de urgență separat, acces imediat.</p>
         </div>
       </div>
 
@@ -468,16 +558,16 @@
         <div class="mock-body">
           <div class="mock-list">
             <div class="mock-list-row">
-              <div class="mock-avatar" style="background:#5E6AD2">DR</div>
+              <div class="mock-avatar av-indigo">DR</div>
               <div style="flex:1">
-                <div style="font-size:12px;font-weight:500">Dr. Râdu Constantin</div>
+                <div style="font-size:12px;font-weight:500">Dr. Radu Constantin</div>
                 <div style="font-size:10px;color:var(--text3)">Implantolog Senior &mdash; Fondator</div>
               </div>
               <div class="mock-status" style="background:#3FCF8E"></div>
               <span class="mock-priority">15 ani exp.</span>
             </div>
             <div class="mock-list-row">
-              <div class="mock-avatar" style="background:#3FCF8E">AM</div>
+              <div class="mock-avatar av-green">AM</div>
               <div style="flex:1">
                 <div style="font-size:12px;font-weight:500">Dr. Ana Munteanu</div>
                 <div style="font-size:10px;color:var(--text3)">Ortodontist &mdash; Invisalign Provider</div>
@@ -486,25 +576,25 @@
               <span class="mock-priority">11 ani exp.</span>
             </div>
             <div class="mock-list-row">
-              <div class="mock-avatar" style="background:#F97316">IP</div>
+              <div class="mock-avatar av-orange">IP</div>
               <div style="flex:1">
-                <div style="font-size:12px;font-weight:500">Dr. Ionut Popa</div>
+                <div style="font-size:12px;font-weight:500">Dr. Ionuț Popa</div>
                 <div style="font-size:10px;color:var(--text3)">Chirurg Oral &mdash; Specializare Viena</div>
               </div>
               <div class="mock-status" style="background:#3FCF8E"></div>
               <span class="mock-priority">9 ani exp.</span>
             </div>
             <div class="mock-list-row">
-              <div class="mock-avatar" style="background:#8B5CF6">LT</div>
+              <div class="mock-avatar av-purple">LT</div>
               <div style="flex:1">
                 <div style="font-size:12px;font-weight:500">Dr. Laura Toma</div>
-                <div style="font-size:10px;color:var(--text3)">Estetică Dentara &mdash; DSD Certified</div>
+                <div style="font-size:10px;color:var(--text3)">Estetică Dentară &mdash; DSD Certified</div>
               </div>
               <div class="mock-status" style="background:#3FCF8E"></div>
               <span class="mock-priority">8 ani exp.</span>
             </div>
             <div class="mock-list-row">
-              <div class="mock-avatar" style="background:#EC4899">SB</div>
+              <div class="mock-avatar av-pink">SB</div>
               <div style="flex:1">
                 <div style="font-size:12px;font-weight:500">Dr. Sofia Barbu</div>
                 <div style="font-size:10px;color:var(--text3)">Stomatologie Pediatrică</div>
@@ -513,7 +603,7 @@
               <span class="mock-priority">6 ani exp.</span>
             </div>
             <div class="mock-list-row">
-              <div class="mock-avatar" style="background:#FEBC2E;color:#000">+7</div>
+              <div class="mock-avatar av-yellow">+7</div>
               <div style="flex:1">
                 <div style="font-size:12px;font-weight:500">+7 medici specialiști</div>
                 <div style="font-size:10px;color:var(--text3)">Endodonție, Parodontologie, Protetică</div>
@@ -532,11 +622,11 @@
 <section class="quote-section">
   <div class="quote-wrap">
     <div class="quote-logo">
-      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#3FCF8E,#00B4D8)">E</div>
+      <div class="quote-logo-dot ql-teal">E</div>
       Elena R., 29 ani &mdash; Pacient
     </div>
     <blockquote>
-      Am adus întreagă familie la Med Life &mdash; de la copilul meu de 8 ani până la bunicii de 70+. Fiecare a primit îngrijire personalizata, iar copilul nu mai plange când mergem la dentist. Asta spune totul.
+      Am adus întreaga familie la Med Life &mdash; de la copilul meu de 8 ani până la bunicii de 70+. Fiecare a primit îngrijire personalizată, iar copilul nu mai plânge când mergem la dentist. Asta spune totul.
     </blockquote>
     <p class="quote-author">Tratament familie: Ortodonție copil + Implanturi + Fațete ceramice &mdash; pacient fidel 6 ani</p>
   </div>
@@ -555,12 +645,12 @@
             <path d="M10 4 L10 10 L14 12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <span class="sync-badge">Sustinut de</span>
+        <span class="sync-badge">Susținut de</span>
         <span style="font-size:15px;font-weight:600">Digital Dental Technology</span>
       </div>
 
-      <h2 class="sync-title">Precizia si sigurănta sunt la baza fiecarui tratament.</h2>
-      <p class="sync-sub">Inveștim constant in echipamentele de ultima generație pentru ca fiecare diagnostic sa fie perfect, fiecare intervenție sa fie precisa si fiecare pacient sa se simta in sigurănta deplina.</p>
+      <h2 class="sync-title">Precizia și siguranța sunt la baza fiecărui tratament.</h2>
+      <p class="sync-sub">Investim constant în echipamentele de ultimă generație pentru ca fiecare diagnostic să fie perfect, fiecare intervenție să fie precisă și fiecare pacient să se simtă în siguranță deplină.</p>
 
       <div class="sync-stats">
         <div class="sync-stat">
@@ -582,42 +672,42 @@
           <div class="sync-feature-icon">&#128247;</div>
           <div>
             <h4>CBCT 3D Cone Beam</h4>
-            <p>Radiografie tridimensionala cu doză minima de râdiații. Diagnostic complet al osului si nervilor înainte de orice intervenție.</p>
+            <p>Radiografie tridimensională cu doză minimă de radiații. Diagnostic complet al osului și nervilor înainte de orice intervenție.</p>
           </div>
         </div>
         <div class="sync-feature">
           <div class="sync-feature-icon">&#128270;</div>
           <div>
             <h4>Scanner Intraoral 3Shape</h4>
-            <p>Amprente digitale in 3 minute, fără silicon. Precizie superioara, confort maxim pentru pacient.</p>
+            <p>Amprente digitale în 3 minute, fără silicon. Precizie superioară, confort maxim pentru pacient.</p>
           </div>
         </div>
         <div class="sync-feature">
           <div class="sync-feature-icon">&#9881;</div>
           <div>
             <h4>Freza CAD/CAM in-house</h4>
-            <p>Coroane, fațete si proteze fabricate in clinică in același timp. Lucrare definitivă într-o singură ședință.</p>
+            <p>Coroane, fațete și proteze fabricate în clinică în același timp. Lucrare definitivă într-o singură ședință.</p>
           </div>
         </div>
         <div class="sync-feature">
           <div class="sync-feature-icon">&#9889;</div>
           <div>
             <h4>Laser Dentar Fotona</h4>
-            <p>Tratamente fără bisturiu, fără sutură, cu vindecare accelerată. Chirurgie gingivală, albire si dezinfecție canale.</p>
+            <p>Tratamente fără bisturiu, fără sutură, cu vindecare accelerată. Chirurgie gingivală, albire și dezinfecție canale.</p>
           </div>
         </div>
         <div class="sync-feature">
           <div class="sync-feature-icon">&#128737;</div>
           <div>
-            <h4>Sterilizare Clașa B</h4>
-            <p>Autoclav de clașa B cu ciclu vacuum. Sterilizare certificâtă 100% pentru fiecare instrument, fiecare ședință.</p>
+            <h4>Sterilizare Clasa B</h4>
+            <p>Autoclav de clasa B cu ciclu vacuum. Sterilizare certificată 100% pentru fiecare instrument, fiecare ședință.</p>
           </div>
         </div>
         <div class="sync-feature">
           <div class="sync-feature-icon">&#128301;</div>
           <div>
-            <h4>Râdiologie Digitală RVG</h4>
-            <p>Râdiografii dentare instant cu 90% mai putina râdiație decât radiografia conventionala pe film.</p>
+            <h4>Radiologie Digitală RVG</h4>
+            <p>Radiografii dentare instant cu 90% mai puțină radiație decât radiografia convențională pe film.</p>
           </div>
         </div>
       </div>
@@ -631,59 +721,59 @@
     <div style="text-align:center;margin-bottom:48px">
       <div class="section-label">Toate Serviciile</div>
       <h2 style="font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px">
-        Stomatologie completă sub un singur acoperis
+        Stomatologie completă sub un singur acoperiș
       </h2>
       <p style="font-size:15px;color:var(--text2);max-width:480px;margin:0 auto;line-height:1.65">
-        Nu mai cautati cabinete diferite pentru fiecare specialitate. La Med Life Dental gasiti totul într-un singur loc.
+        Nu mai căutați cabinete diferite pentru fiecare specialitate. La Med Life Dental găsiți totul într-un singur loc.
       </p>
     </div>
 
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-card-tag tag-new">Specialitate</div>
-        <div class="feature-card-icon" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <div class="feature-card-icon ico-indigo">&#129463;</div>
         <h3>Implantologie</h3>
-        <p>Implanturi unitare, punti pe implanturi, All-on-4, All-on-6. Reconstructii complete ale arcadei in 1&ndash;2 zile.</p>
+        <p>Implanturi unitare, punți pe implanturi, All-on-4, All-on-6. Reconstrucții complete ale arcadei în 1&ndash;2 zile.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(63,207,142,0.12)">&#128200;</div>
+        <div class="feature-card-icon ico-green">&#128200;</div>
         <h3>Ortodonție</h3>
-        <p>Invisalign, alinere personalizate, aparate ceramice si metalice pentru copii si adulti. Durată medie 12&ndash;18 luni.</p>
+        <p>Invisalign, alinere personalizate, aparate ceramice și metalice pentru copii și adulți. Durată medie 12&ndash;18 luni.</p>
       </div>
       <div class="feature-card">
         <div class="feature-card-tag tag-new">Nou</div>
-        <div class="feature-card-icon" style="background:rgba(249,115,22,0.12)">&#10024;</div>
+        <div class="feature-card-icon ico-orange">&#10024;</div>
         <h3>Smile Design</h3>
-        <p>Proiectare digitală completă a zâmbetului: fațete, coroane, conturare gingivală si albire profesionala combinate.</p>
+        <p>Proiectare digitală completă a zâmbetului: fațete, coroane, conturare gingivală și albire profesională combinate.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(139,92,246,0.12)">&#128293;</div>
+        <div class="feature-card-icon ico-purple">&#128293;</div>
         <h3>Endodonție</h3>
-        <p>Tratament de canal cu rotative mecanice si apex locator. Salvam dintii considerati pierduti de alte cabinete.</p>
+        <p>Tratament de canal cu rotative mecanice și apex locator. Salvăm dinții considerați pierduți de alte cabinete.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(236,72,153,0.12)">&#129657;</div>
+        <div class="feature-card-icon ico-pink">&#129657;</div>
         <h3>Parodontologie</h3>
-        <p>Tratament parodontiu, detartraj subgingival, chirurgie regenerativa. Salvam dantura afectata de boli ale gingiei.</p>
+        <p>Tratament parodonțiu, detartraj subgingival, chirurgie regenerativă. Salvăm dantura afectată de boli ale gingiei.</p>
       </div>
       <div class="feature-card">
         <div class="feature-card-tag tag-new">Nou</div>
-        <div class="feature-card-icon" style="background:rgba(254,188,46,0.12)">&#9889;</div>
+        <div class="feature-card-icon ico-yellow">&#9889;</div>
         <h3>Chirurgie Laser</h3>
-        <p>Extractii, frenectomii, operculectomii si chirurgie gingivală cu laser Fotona &mdash; fără bisturiu, fără sutură.</p>
+        <p>Extracții, frenectomii, operculectomii și chirurgie gingivală cu laser Fotona &mdash; fără bisturiu, fără sutură.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(94,106,210,0.15)">&#128081;</div>
+        <div class="feature-card-icon ico-indigo">&#128081;</div>
         <h3>Protetică</h3>
         <p>Coroane, punti si proteze mobilizabile fabricate in laboratorul propriu CAD/CAM. Lucrari definitive in 24 ore.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(63,207,142,0.12)">&#129529;</div>
-        <h3>Profilaxie & Igiena</h3>
+        <div class="feature-card-icon ico-green">&#129529;</div>
+        <h3>Profilaxie & Igienă</h3>
         <p>Detartraj, airflow, aplicare fluor si sigilarea santurilor la copii. Ședințe de profilaxie la 6 luni incluse in abonament.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-card-icon" style="background:rgba(249,115,22,0.12)">&#128137;</div>
+        <div class="feature-card-icon ico-orange">&#128137;</div>
         <h3>Sedare Conștienta</h3>
         <p>Tratamente sub sedare intravenoasă sau inhalatorie cu protoxid de azot. Fără frică, fără stres, fără amintiri neplăcute.</p>
       </div>
@@ -695,10 +785,10 @@
 <section class="cta-section">
   <div class="container" style="position:relative;z-index:1">
     <h2>Gata pentru zâmbetul perfect?</h2>
-    <p>Prima consultație este gratuită. Vino, analizăm situația ta si iti propunem cel mai bun plan de tratament.</p>
+    <p>Prima consultație este gratuită. Vino, analizăm situația ta și îți propunem cel mai bun plan de tratament.</p>
     <div class="hero-ctas">
-      <button class="btn-hero-primary">Programează Acum &mdash; Gratuit</button>
-      <button class="btn-hero-ghost">Sună: 0800 123 456</button>
+      <a href="contact.html" class="btn-hero-primary">Programează Acum &mdash; Gratuit</a>
+      <a href="tel:0800123456" class="btn-hero-ghost">Sună: 0800 123 456</a>
     </div>
   </div>
 </section>
@@ -721,9 +811,9 @@
       <ul>
         <li><a href="tratamente.html">Implantologie</a></li>
         <li><a href="tratamente.html">Ortodonție</a></li>
-        <li><a href="tratamente.html">Estetică Dentara</a></li>
+        <li><a href="tratamente.html">Estetică Dentară</a></li>
         <li><a href="tratamente.html">Endodonție</a></li>
-        <li><a href="tratamente.html">Chirurgie Orala</a></li>
+        <li><a href="tratamente.html">Chirurgie Orală</a></li>
       </ul>
     </div>
 
@@ -762,12 +852,12 @@
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <p>&copy; 2025 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
     <div class="footer-bottom-links">
       <a href="#">Facebook</a>
       <a href="#">Instagram</a>
       <a href="#">YouTube</a>
-      <a href="#">Google Maps</a>
+      <a href="confidentialitate.html">Confidențialitate</a><a href="https://www.google.com/maps/search/Str.+Mihai+Eminescu+42+Sector+2+Bucure%C8%99ti" target="_blank" rel="noopener">Google Maps</a>
     </div>
   </div>
 </footer>
@@ -813,7 +903,7 @@
 
   <!-- 3D Robot Scene -->
   <div class="chat-scene">
-    <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer>
+    <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" events-target="global"></spline-viewer>
     <div class="chat-scene-label">Asistent AI</div>
   </div>
 
@@ -829,7 +919,7 @@
     <button class="qr-btn" onclick="sendQR(this,'Am o urgență dentara')">&#128680; Urgență</button>
     <button class="qr-btn" onclick="sendQR(this,'Ce prețuri aveți?')">&#128176; Prețuri</button>
     <button class="qr-btn" onclick="sendQR(this,'Acceptați asigurări?')">&#128203; Asigurări</button>
-    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locâție</button>
+    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locație</button>
   </div>
 
   <!-- Input -->

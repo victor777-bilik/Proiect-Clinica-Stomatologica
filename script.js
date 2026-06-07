@@ -174,73 +174,26 @@
   window.addEventListener('resize', resize);
   resize();
 
-  var start = null;
+  var start = null, rafId = null, pauseOffset = 0, pauseStart = 0;
   function frame(ts) {
     if (!start) start = ts;
-    gl.uniform1f(uTime, (ts - start) * 0.001);
+    gl.uniform1f(uTime, (ts - start - pauseOffset) * 0.001);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(frame);
+    rafId = requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+  window._shaderPause = function () {
+    if (!rafId) return;
+    cancelAnimationFrame(rafId); rafId = null;
+    pauseStart = performance.now();
+  };
+  window._shaderResume = function () {
+    if (rafId) return;
+    pauseOffset += performance.now() - pauseStart;
+    rafId = requestAnimationFrame(frame);
+  };
+  rafId = requestAnimationFrame(frame);
 })();
 
-
-/* ── GYRO ROBOT ── */
-(function () {
-  if (!window.DeviceOrientationEvent) return;
-
-  var viewer = document.querySelector('spline-viewer');
-  if (!viewer) return;
-
-  var BASE_BETA = null;
-  var gyroActive = false;
-  var curX = window.innerWidth  / 2;
-  var curY = window.innerHeight / 2;
-  var tgtX = curX, tgtY = curY;
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  /* Simulează mousemove fluid — Spline folosește asta pentru head-tracking */
-  (function tick() {
-    curX = lerp(curX, tgtX, 0.10);
-    curY = lerp(curY, tgtY, 0.10);
-    document.dispatchEvent(new MouseEvent('mousemove', {
-      bubbles: true, clientX: curX, clientY: curY
-    }));
-    requestAnimationFrame(tick);
-  })();
-
-  function onOrientation(e) {
-    var beta  = e.beta  || 0;
-    var gamma = e.gamma || 0;
-    if (BASE_BETA === null) BASE_BETA = beta;
-    var w = window.innerWidth, h = window.innerHeight;
-    tgtX = w / 2 + gamma * (w / 20);
-    tgtY = h / 2 + (beta - BASE_BETA) * (h / 15);
-    tgtX = Math.max(0, Math.min(w, tgtX));
-    tgtY = Math.max(0, Math.min(h, tgtY));
-  }
-
-  function startGyro() {
-    if (gyroActive) return;
-    gyroActive = true;
-    window.addEventListener('deviceorientation', onOrientation);
-  }
-
-  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-    var chatBtn = document.querySelector('.chat-trigger');
-    if (chatBtn) {
-      chatBtn.addEventListener('click', function () {
-        if (gyroActive) return;
-        DeviceOrientationEvent.requestPermission()
-          .then(function (r) { if (r === 'granted') startGyro(); })
-          .catch(function () {});
-      });
-    }
-  } else {
-    startGyro();
-  }
-})();
 
 /* ── FADE-IN ON SCROLL ── */
 const observer = new IntersectionObserver((entries) => {
@@ -248,6 +201,7 @@ const observer = new IntersectionObserver((entries) => {
     if (e.isIntersecting) {
       e.target.style.opacity = '1';
       e.target.style.transform = 'translateY(0)';
+      observer.unobserve(e.target);
     }
   });
 }, { threshold: 0.1 });
@@ -358,12 +312,12 @@ document.querySelectorAll('section:not(.hero), .sync-wrap, .feature-card').forEa
     ],
     program: [
       'Programul nostru de lucru: &#128337;',
-      '<strong>Luni &ndash; Vineri: 08:00 &ndash; 20:00</strong><br><strong>Sambata: 09:00 &ndash; 15:00</strong><br><strong>Urgente: 24/7</strong> la 0800 456 789.',
+      '<strong>Luni &ndash; Vineri: 08:00 &ndash; 20:00</strong><br><strong>Sambata: 09:00 &ndash; 15:00</strong><br><strong>Urgente: 24/7</strong> la 0800 123 456.',
       'In zilele de sarbatoare legala avem program redus (08:00&ndash;14:00). Suntem inchisi duminica (cu exceptia urgentelor). Vrei sa programam o vizita?'
     ],
     urgenta: [
       '&#128680; Urgenta dentara? Actionam imediat!',
-      'Suna acum la <strong>0800 456 789</strong> &mdash; linie de urgente <strong>NON-STOP 24/7</strong>, inclusiv weekend si sarbatori legale.',
+      'Suna acum la <strong>0800 123 456</strong> &mdash; linie de urgente <strong>NON-STOP 24/7</strong>, inclusiv weekend si sarbatori legale.',
       'Tratam in aceeasi zi: durere acuta &bull; abces dentar &bull; dinte spart/cazut &bull; trauma faciala &bull; umflaturi. Cabinetul de urgente este mereu disponibil &mdash; vino direct!'
     ],
     pret: [
@@ -396,7 +350,18 @@ document.querySelectorAll('section:not(.hero), .sync-wrap, .feature-card').forEa
     const wrap = document.getElementById('chatMsgs');
     const d = document.createElement('div');
     d.className = 'cmsg ' + (isBot ? 'bot' : 'usr');
-    d.innerHTML = '<div class="cmsg-bubble">' + html + '</div><div class="cmsg-time">' + ts() + '</div>';
+    const bubble = document.createElement('div');
+    bubble.className = 'cmsg-bubble';
+    if (isBot) {
+      bubble.innerHTML = html;
+    } else {
+      bubble.textContent = html;
+    }
+    const time = document.createElement('div');
+    time.className = 'cmsg-time';
+    time.textContent = ts();
+    d.appendChild(bubble);
+    d.appendChild(time);
     wrap.appendChild(d);
     wrap.scrollTop = wrap.scrollHeight;
   }
@@ -450,8 +415,8 @@ document.querySelectorAll('section:not(.hero), .sync-wrap, .feature-card').forEa
     if (/coroana|punte|proteza|zirconiu|protetica/.test(l))         return BOT.protetica;
     if (/rate|finant|credit|dobanda|platesc|plata/.test(l))         return BOT.rate;
     if (/unde|adresa|locatie|cum ajung|metrou|parcare|strada/.test(l)) return BOT.locatie;
-    if (/program|orar|ore|deschis|inchis|sambata|duminica/.test(l)) return BOT.program;
-    if (/program|programez|programar|rezerv|vizita|consultatie|vin/.test(l)) return BOT.programare;
+    if (/programez|programar|rezerv|vizita|consultatie|vin/.test(l))          return BOT.programare;
+    if (/program|orar|ore|deschis|inchis|sambata|duminica/.test(l))          return BOT.program;
     if (/pret|cost|cat costa|scump|ieftin|euro|lei|tarif|oferta/.test(l)) return BOT.pret;
     if (/servicii|oferi|ce faceti|specialitat|tratament/.test(l))   return BOT.servicii;
     return BOT.default;
@@ -512,6 +477,74 @@ document.querySelectorAll('section:not(.hero), .sync-wrap, .feature-card').forEa
     document.getElementById('chatIconClose').style.display = open ? 'block' : 'none';
     const n = document.getElementById('chatNotif');
     if (n) n.style.display = 'none';
-    if (open) { initChat(); hideSplineLogo(); }
+    if (open) {
+      initChat(); hideSplineLogo();
+      window._shaderPause && window._shaderPause();
+    } else {
+      window._shaderResume && window._shaderResume();
+    }
   };
+})();
+
+/* ── COOKIE CONSENT BANNER ── */
+(function () {
+  var COOKIE_KEY = 'ml_cookie_consent';
+
+  function dismissBanner(banner) {
+    banner.style.transition = 'transform 0.35s ease-in, opacity 0.35s ease-in';
+    banner.style.transform  = 'translateX(-50%) translateY(120%)';
+    banner.style.opacity    = '0';
+    setTimeout(function () { banner.remove(); }, 380);
+  }
+
+  function buildBanner() {
+    var b = document.createElement('div');
+    b.id = 'cookie-banner';
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-label', 'Preferințe cookie-uri');
+
+    var textDiv = document.createElement('div');
+    textDiv.className = 'cookie-text';
+    textDiv.innerHTML =
+      '<strong>Acest site folosește cookie-uri.</strong> Utilizăm Google Fonts și Spline 3D, ' +
+      'servicii externe care pot stoca date despre vizita ta. ' +
+      '<a href="confidentialitate.html">Politica de confidențialitate →</a>';
+
+    var actions = document.createElement('div');
+    actions.className = 'cookie-actions';
+
+    var btnAccept = document.createElement('button');
+    btnAccept.className = 'cookie-accept';
+    btnAccept.textContent = 'Accept toate';
+    btnAccept.addEventListener('click', function () {
+      localStorage.setItem(COOKIE_KEY, 'accepted');
+      dismissBanner(b);
+    });
+
+    var btnDecline = document.createElement('button');
+    btnDecline.className = 'cookie-decline';
+    btnDecline.textContent = 'Doar necesare';
+    btnDecline.addEventListener('click', function () {
+      localStorage.setItem(COOKIE_KEY, 'declined');
+      dismissBanner(b);
+    });
+
+    actions.appendChild(btnAccept);
+    actions.appendChild(btnDecline);
+    b.appendChild(textDiv);
+    b.appendChild(actions);
+    document.body.appendChild(b);
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { b.classList.add('visible'); });
+    });
+  }
+
+  if (!localStorage.getItem(COOKIE_KEY)) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', buildBanner);
+    } else {
+      buildBanner();
+    }
+  }
 })();

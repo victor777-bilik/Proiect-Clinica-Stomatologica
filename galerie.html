@@ -2,8 +2,15 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galerie — Med Life Dental</title>
+<meta name="description" content="Galerie rezultate reale: implantologie, Smile Design, ortodonție și estetică dentară. Cazuri înainte și după. Med Life Dental București.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medlifedental.ro/galerie.html">
+<meta property="og:title" content="Galerie Cazuri — Med Life Dental București">
+<meta property="og:description" content="Galerie rezultate reale: implantologie, Smile Design, ortodonție și estetică dentară. Cazuri înainte și după. Med Life Dental București.">
+<meta property="og:image" content="https://medlifedental.ro/og-image.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -133,7 +140,7 @@
 .gal-cta::before{
   content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);
   width:500px;height:400px;
-  background:râdial-gradient(ellipse,rgba(94,106,210,0.1) 0%,transparent 70%);
+  background:radial-gradient(ellipse,rgba(94,106,210,0.1) 0%,transparent 70%);
   pointer-events:none;
 }
 .gal-cta h2{font-size:clamp(24px,3.5vw,38px);font-weight:700;letter-spacing:-0.03em;margin-bottom:14px}
@@ -141,7 +148,16 @@
 .gal-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.page-hero{padding:120px 20px 56px}}
 @media(max-width:580px){.gallery-grid{grid-template-columns:1fr}.hero-stats{gap:28px}}
+@media(max-width:480px){
+  .page-hero{padding:108px 16px 48px}
+  .page-hero h1{font-size:clamp(28px,8vw,42px)}
+  .page-hero-sub{font-size:15px;margin-bottom:28px}
+  .hero-stats{gap:20px}
+  .filter-bar{gap:6px;margin-bottom:36px}
+  .gallery-grid{gap:12px}
+}
 </style>
 </head>
 <body>
@@ -163,8 +179,8 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="btn-ghost active" onclick="location.href='galerie.html'">Galerie</button>
-    <button class="btn-primary" onclick="location.href='contact.html'">Programare Online</button>
+    <a href="galerie.html" class="btn-ghost active">Galerie</a>
+    <a href="contact.html" class="btn-primary">Programare Online</a>
   </div>
   <button class="nav-burger" aria-label="Deschide meniu">
     <span></span><span></span><span></span>
@@ -318,7 +334,7 @@
         </div>
         <div class="gal-body">
           <span class="gal-tag yellow">Albire Zoom Whitening</span>
-          <div class="gal-name">Râdu V.</div>
+          <div class="gal-name">Radu V.</div>
           <div class="gal-meta">35 ani &bull; Durată tratament: 1 ședință (45 min)</div>
           <div class="gal-desc">Albire profesionala Zoom in cabinet. Rezultat: 10 nuante mai deschis. Completat cu gutiere de menținere pentru acasă.</div>
           <div class="gal-result">✓ 10 nuante mai deschis într-o singură ședință</div>
@@ -455,7 +471,7 @@
           <span class="gal-tag accent">Implant Nobel Biocare</span>
           <div class="gal-name">George A.</div>
           <div class="gal-meta">52 ani &bull; Durată tratament: 5 luni</div>
-          <div class="gal-desc">3 implanturi Nobel Biocare în zona frontala superioara după pierdere traumatica. Grefare osoașa prealabila. Coroane ceramice individuale.</div>
+          <div class="gal-desc">3 implanturi Nobel Biocare în zona frontala superioara după pierdere traumatica. Grefare osoasă prealabila. Coroane ceramice individuale.</div>
           <div class="gal-result">✓ Restaurare estetică de top in zona vizibilă</div>
         </div>
       </div>
@@ -549,8 +565,8 @@
       <h2>Programează-ti consultația gratuită.</h2>
       <p>In 30 de minute iti spunem exact ce se poate face si cum va arată rezultatul — fără obligații, fără costuri ascunse.</p>
       <div class="gal-cta-btns">
-        <button class="btn-primary" onclick="location.href='contact.html'" style="font-size:15px;padding:12px 28px">Programare Online Gratuită</button>
-        <button class="btn-ghost" onclick="location.href='preturi.html'" style="font-size:15px;padding:12px 28px;border:1px solid var(--border);border-radius:7px">Vezi Prețuri</button>
+        <a href="contact.html" class="btn-primary" style="font-size:15px;padding:12px 28px">Programare Online Gratuită</a>
+        <a href="preturi.html" class="btn-ghost" style="font-size:15px;padding:12px 28px;border:1px solid var(--border);border-radius:7px">Vezi Prețuri</a>
       </div>
     </div>
 
@@ -574,9 +590,9 @@
       <ul>
         <li><a href="tratamente.html">Implantologie</a></li>
         <li><a href="tratamente.html">Ortodonție</a></li>
-        <li><a href="tratamente.html">Estetică Dentara</a></li>
+        <li><a href="tratamente.html">Estetică Dentară</a></li>
         <li><a href="tratamente.html">Endodonție</a></li>
-        <li><a href="tratamente.html">Chirurgie Orala</a></li>
+        <li><a href="tratamente.html">Chirurgie Orală</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -611,12 +627,12 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <p>&copy; 2025 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
     <div class="footer-bottom-links">
       <a href="#">Facebook</a>
       <a href="#">Instagram</a>
       <a href="#">YouTube</a>
-      <a href="#">Google Maps</a>
+      <a href="confidentialitate.html">Confidențialitate</a><a href="https://www.google.com/maps/search/Str.+Mihai+Eminescu+42+Sector+2+Bucure%C8%99ti" target="_blank" rel="noopener">Google Maps</a>
     </div>
   </div>
 </footer>
@@ -652,7 +668,7 @@
     </button>
   </div>
   <div class="chat-scene">
-    <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer>
+    <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" events-target="global"></spline-viewer>
     <div class="chat-scene-label">Asistent AI</div>
   </div>
   <div class="chat-msgs" id="chatMsgs"></div>
@@ -664,7 +680,7 @@
     <button class="qr-btn" onclick="sendQR(this,'Am o urgență dentara')">&#128680; Urgență</button>
     <button class="qr-btn" onclick="sendQR(this,'Ce prețuri aveți?')">&#128176; Prețuri</button>
     <button class="qr-btn" onclick="sendQR(this,'Acceptați asigurări?')">&#128203; Asigurări</button>
-    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locâție</button>
+    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locație</button>
   </div>
   <div class="chat-input-row">
     <textarea class="chat-ta" id="chatTA" placeholder="Scrie un mesaj..." rows="1"

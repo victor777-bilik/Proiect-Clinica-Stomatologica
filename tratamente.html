@@ -2,8 +2,15 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tratamente — Med Life Dental</title>
+<meta name="description" content="Tratamente complete: implanturi Straumann & Nobel Biocare, Invisalign, estetică dentară, endodonție, parodontologie. Consultație gratuită. Med Life Dental.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://medlifedental.ro/tratamente.html">
+<meta property="og:title" content="Tratamente Stomatologice — Med Life Dental București">
+<meta property="og:description" content="Tratamente complete: implanturi Straumann & Nobel Biocare, Invisalign, estetică dentară, endodonție, parodontologie. Consultație gratuită. Med Life Dental.">
+<meta property="og:image" content="https://medlifedental.ro/og-image.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -111,6 +118,15 @@
   .treatment-deep-header{flex-direction:column;gap:14px;padding:24px}
   .treatment-deep-body{padding:24px}
   .ba-strip{grid-template-columns:1fr}
+  .page-hero{padding:120px 20px 60px}
+}
+@media(max-width:480px){
+  .page-hero{padding:108px 16px 48px}
+  .page-hero h1{font-size:clamp(30px,8vw,44px)}
+  .page-hero-sub{font-size:15px}
+  .treatment-deep-header{padding:18px}
+  .treatment-deep-body{padding:18px}
+  .steps-section{padding:24px 16px}
 }
 </style>
 </head>
@@ -133,8 +149,8 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="btn-ghost" onclick="location.href='galerie.html'">Galerie</button>
-    <button class="btn-primary" onclick="location.href='contact.html'">Programare Online</button>
+    <a href="galerie.html" class="btn-ghost">Galerie</a>
+    <a href="contact.html" class="btn-primary">Programare Online</a>
   </div>
   <button class="nav-burger" aria-label="Deschide meniu">
     <span></span><span></span><span></span>
@@ -177,7 +193,7 @@
         <div class="feature-item">
           <div class="feature-badge orange">Grefare Osoașa</div>
           <h3>Implanturi chiar si cu os insuficient</h3>
-          <p>In cazurile cu atrofie osoașa, efectuam grefare sinusala sau laterala cu biomateriale certificâte. Creem baza osoașa necesara pentru implante sigure si durabile, chiar si in situații considerate imposibile de alte cabinete.</p>
+          <p>In cazurile cu atrofie osoasă, efectuam grefare sinusala sau laterala cu biomateriale certificate. Creem baza osoasă necesara pentru implante sigure si durabile, chiar si in situații considerate imposibile de alte cabinete.</p>
         </div>
       </div>
       <div class="treatment-deep">
@@ -192,7 +208,7 @@
         <div class="treatment-deep-body">
           <div class="td-highlight">
             <div class="td-highlight-row"><span class="td-hl-label">Rată de succes</span><span class="td-hl-val green">98.7%</span></div>
-            <div class="td-highlight-row"><span class="td-hl-label">Implanturi plașate total</span><span class="td-hl-val">5.000+</span></div>
+            <div class="td-highlight-row"><span class="td-hl-label">Implanturi plasate total</span><span class="td-hl-val">5.000+</span></div>
             <div class="td-highlight-row"><span class="td-hl-label">Branduri utilizate</span><span class="td-hl-val">Straumann / Nobel Biocare</span></div>
             <div class="td-highlight-row"><span class="td-hl-label">Garanție implant</span><span class="td-hl-val green">Pe viață</span></div>
             <div class="td-highlight-row"><span class="td-hl-label">All-on-4 durată</span><span class="td-hl-val">1 zi</span></div>
@@ -360,11 +376,11 @@
 <section class="quote-section">
   <div class="quote-wrap">
     <div class="quote-logo">
-      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#5E6AD2,#8B5CF6)">A</div>
+      <div class="quote-logo-dot ql-indigo">A</div>
       Andreea M., 34 ani &mdash; Pacient
     </div>
     <blockquote>
-      Am venit cu teama si am plecat cu cel mai frumos zâmbet din viață mea. Echipa Med Life m-a ghidat pas cu pas prin întregul tratament de implanturi, iar rezultatul a depășit orice așteptare.
+      Am venit cu teamă și am plecat cu cel mai frumos zâmbet din viață mea. Echipa Med Life m-a ghidat pas cu pas prin întregul tratament de implanturi, iar rezultatul a depășit orice așteptare.
     </blockquote>
     <p class="quote-author">Tratament: Implanturi All-on-4 + Fațete ceramice &mdash; durată 4 luni</p>
   </div>
@@ -413,8 +429,8 @@
     <h2>Începe transformarea astăzi.</h2>
     <p>Prima consultație este gratuită. Vino, analizezi situația împreună cu medicul si stabilim cel mai bun traseu de tratament pentru tine.</p>
     <div class="hero-ctas">
-      <button class="btn-hero-primary" onclick="location.href='contact.html'">Programează Consultația Gratuită</button>
-      <button class="btn-hero-ghost" onclick="location.href='preturi.html'">Vezi Prețurile</button>
+      <a href="contact.html" class="btn-hero-primary">Programează Consultația Gratuită</a>
+      <a href="preturi.html" class="btn-hero-ghost">Vezi Prețurile</a>
     </div>
   </div>
 </section>
@@ -431,14 +447,14 @@
       </a>
       <p>Clinică stomatologică premium &mdash; 15 ani de excelență in îngrijirea zâmbetelor din Romania.</p>
     </div>
-    <div class="footer-col"><h4>Tratamente</h4><ul><li><a href="tratamente.html">Implantologie</a></li><li><a href="tratamente.html">Ortodonție</a></li><li><a href="tratamente.html">Estetică Dentara</a></li><li><a href="tratamente.html">Endodonție</a></li><li><a href="tratamente.html">Chirurgie Orala</a></li></ul></div>
+    <div class="footer-col"><h4>Tratamente</h4><ul><li><a href="tratamente.html">Implantologie</a></li><li><a href="tratamente.html">Ortodonție</a></li><li><a href="tratamente.html">Estetică Dentară</a></li><li><a href="tratamente.html">Endodonție</a></li><li><a href="tratamente.html">Chirurgie Orală</a></li></ul></div>
     <div class="footer-col"><h4>Servicii</h4><ul><li><a href="servicii.html">Smile Design 3D</a></li><li><a href="servicii.html">Parodontologie</a></li><li><a href="servicii.html">Protetică</a></li><li><a href="servicii.html">Stomatologie Pediatrică</a></li><li><a href="servicii.html">Urgențe 24/7</a></li></ul></div>
     <div class="footer-col"><h4>Clinică</h4><ul><li><a href="echipa.html">Echipa Medicală</a></li><li><a href="tehnologie.html">Tehnologie</a></li><li><a href="preturi.html">Prețuri</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div class="footer-col"><h4>Pacient</h4><ul><li><a href="contact.html">Programare Online</a></li><li><a href="preturi.html">Prețuri &amp; Pachete</a></li><li><a href="preturi.html">Finanțare Rate</a></li><li><a href="contact.html">Întrebări Frecvente</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
-    <div class="footer-bottom-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Google Maps</a></div>
+    <p>&copy; 2025 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <div class="footer-bottom-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="confidentialitate.html">Confidențialitate</a><a href="https://www.google.com/maps/search/Str.+Mihai+Eminescu+42+Sector+2+Bucure%C8%99ti" target="_blank" rel="noopener">Google Maps</a></div>
   </div>
 </footer>
 
@@ -451,9 +467,18 @@
 </button>
 <div class="chat-panel" id="chatPanel">
   <div class="chat-hdr"><div class="chat-hdr-info"><div class="chat-hdr-av">&#129302;</div><div><div class="chat-hdr-name">Med Life AI</div><div class="chat-hdr-status"><div class="chat-online-dot"></div>Online acum &bull; răspunde instant</div></div></div><button class="chat-close-btn" onclick="toggleChat()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
-  <div class="chat-scene"><spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer><div class="chat-scene-label">Asistent AI</div></div>
+  <div class="chat-scene"><spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" events-target="global"></spline-viewer><div class="chat-scene-label">Asistent AI</div></div>
   <div class="chat-msgs" id="chatMsgs"></div>
-  <div class="chat-qr" id="chatQR">REPLACED</div>
+    <div class="chat-qr" id="chatQR">
+    <button class="qr-btn" onclick="sendQR(this,'Vreau o programare')">&#128197; Programare</button>
+    <button class="qr-btn" onclick="sendQR(this,'Cât costa un implant?')">&#129463; Implant</button>
+    <button class="qr-btn" onclick="sendQR(this,'Spune-mi despre Invisalign')">&#128578; Invisalign</button>
+    <button class="qr-btn" onclick="sendQR(this,'Vreau sa-mi albesc dintii')">&#10024; Albire</button>
+    <button class="qr-btn" onclick="sendQR(this,'Am o urgență dentara')">&#128680; Urgență</button>
+    <button class="qr-btn" onclick="sendQR(this,'Ce prețuri aveți?')">&#128176; Prețuri</button>
+    <button class="qr-btn" onclick="sendQR(this,'Acceptați asigurări?')">&#128203; Asigurări</button>
+    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locație</button>
+  </div>
   <div class="chat-input-row"><textarea class="chat-ta" id="chatTA" placeholder="Scrie un mesaj..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();chatSend()}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea><button class="chat-send-btn" onclick="chatSend()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
 </div>
 <script src="script.js"></script>

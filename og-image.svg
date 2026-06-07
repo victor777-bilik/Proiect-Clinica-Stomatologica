@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="100%" stop-color="#0e0f1c"/>
+    </linearGradient>
+    <linearGradient id="accent-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5E6AD2" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.55)"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="65%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#5E6AD2" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#5E6AD2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Subtle grid pattern -->
+  <rect width="1200" height="630" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Grid lines -->
+  <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Accent circle glow -->
+  <circle cx="900" cy="200" r="320" fill="url(#accent-glow)"/>
+
+  <!-- Border frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+  <!-- Logo tooth icon -->
+  <g transform="translate(80, 80)">
+    <path d="M22 5C16 5 11 9 11 15C11 20 14 23 14 26C14 29 13 32 13 35C13 39 15 41 17 40C19 39 19 35 19 32C19 30.4 20.4 29 22 29C23.6 29 25 30.4 25 32C25 35 25 39 27 40C29 41 31 39 31 35C31 32 30 29 30 26C30 23 33 20 33 15C33 9 28 5 22 5Z"
+      stroke="#5E6AD2" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Brand name -->
+  <text x="120" y="116" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="rgba(255,255,255,0.9)" letter-spacing="-0.02em">Med Life Dental</text>
+
+  <!-- Badge -->
+  <rect x="80" y="195" width="290" height="34" rx="17" fill="rgba(94,106,210,0.15)" stroke="rgba(94,106,210,0.35)" stroke-width="1"/>
+  <circle cx="103" cy="212" r="5" fill="#5E6AD2"/>
+  <text x="117" y="217" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,0.75)" letter-spacing="0.01em">15 Ani de Excelență Stomatologică</text>
+
+  <!-- Main headline -->
+  <text x="80" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="url(#text-grad)" letter-spacing="-0.04em">Zâmbetul tău,</text>
+  <text x="80" y="374" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="url(#text-grad)" letter-spacing="-0.04em">arta noastră.</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="435" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="rgba(255,255,255,0.55)">Clinică stomatologică premium din București • Prima consultație gratuită</text>
+
+  <!-- Stats row -->
+  <g transform="translate(80, 490)">
+    <!-- Stat 1 -->
+    <rect x="0" y="0" width="170" height="64" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="16" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="-0.03em">20.000+</text>
+    <text x="16" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">Pacienți tratați</text>
+    <!-- Stat 2 -->
+    <rect x="188" y="0" width="160" height="64" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="16" y="26" x="204" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#3FCF8E" letter-spacing="-0.03em">4.9 ★</text>
+    <text x="204" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">2.400+ recenzii Google</text>
+    <!-- Stat 3 -->
+    <rect x="366" y="0" width="160" height="64" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="382" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#5E6AD2" letter-spacing="-0.03em">98.7%</text>
+    <text x="382" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.45)">Rată succes implanturi</text>
+  </g>
+
+  <!-- URL -->
+  <text x="1120" y="565" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="rgba(255,255,255,0.3)" text-anchor="end" letter-spacing="0.01em">medlifedental.ro</text>
+</svg>
