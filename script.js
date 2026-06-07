@@ -193,23 +193,27 @@
   if (!viewer) return;
 
   var tX = 0, tY = 0, cX = 0, cY = 0;
+  var BASE_BETA = null;
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 
   (function tick() {
-    cX = lerp(cX, tX, 0.09);
-    cY = lerp(cY, tY, 0.09);
-    viewer.style.transform =
-      'rotateX(' + cX + 'deg) rotateY(' + cY + 'deg)' +
-      ' translateX(' + (cY * -4) + 'px) translateY(' + (cX * -3) + 'px)';
+    cX = lerp(cX, tX, 0.04);
+    cY = lerp(cY, tY, 0.04);
+    viewer.style.transform = 'rotateX(' + cX + 'deg) rotateY(' + cY + 'deg)';
     requestAnimationFrame(tick);
   })();
 
   function onOrientation(e) {
     var beta  = e.beta  || 0;
     var gamma = e.gamma || 0;
-    tX = Math.max(-30, Math.min(30, (beta - 75) * 0.5));
-    tY = Math.max(-30, Math.min(30, gamma * 0.5));
+    if (BASE_BETA === null) BASE_BETA = beta;
+    var dBeta = beta - BASE_BETA;
+    /* dead zone ±2° — ignoră micro-tremurături */
+    if (Math.abs(dBeta) < 2) dBeta = 0;
+    if (Math.abs(gamma) < 2) gamma = 0;
+    tX = Math.max(-7, Math.min(7, dBeta * 0.14));
+    tY = Math.max(-7, Math.min(7, gamma * 0.12));
   }
 
   function startGyro() {
