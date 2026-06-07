@@ -201,7 +201,7 @@
   (function tick() {
     cX = lerp(cX, tX, 0.05);
     cY = lerp(cY, tY, 0.05);
-    viewer.style.transform = 'rotateX(' + cX + 'deg) rotateY(' + cY + 'deg)';
+    viewer.style.transform = 'translateX(' + cY + 'px) translateY(' + cX + 'px)';
     requestAnimationFrame(tick);
   })();
 
@@ -209,8 +209,8 @@
     var beta  = e.beta  || 0;
     var gamma = e.gamma || 0;
     if (BASE_BETA === null) BASE_BETA = beta;
-    tX = Math.max(-12, Math.min(12, (beta  - BASE_BETA) * 0.22));
-    tY = Math.max(-12, Math.min(12,  gamma              * 0.18));
+    tX = Math.max(-18, Math.min(18, (beta  - BASE_BETA) * 0.35));
+    tY = Math.max(-18, Math.min(18,  gamma              * 0.28));
   }
 
   function startGyro() {
