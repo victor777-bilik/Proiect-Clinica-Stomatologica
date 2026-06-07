@@ -192,16 +192,21 @@
   var viewer = document.querySelector('spline-viewer');
   if (!viewer) return;
 
-  var tX = 0, tY = 0, cX = 0, cY = 0;
   var BASE_BETA = null;
   var gyroActive = false;
+  var curX = window.innerWidth  / 2;
+  var curY = window.innerHeight / 2;
+  var tgtX = curX, tgtY = curY;
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 
+  /* Simulează mousemove fluid — Spline folosește asta pentru head-tracking */
   (function tick() {
-    cX = lerp(cX, tX, 0.05);
-    cY = lerp(cY, tY, 0.05);
-    viewer.style.transform = 'translateX(' + cY + 'px) translateY(' + cX + 'px)';
+    curX = lerp(curX, tgtX, 0.06);
+    curY = lerp(curY, tgtY, 0.06);
+    document.dispatchEvent(new MouseEvent('mousemove', {
+      bubbles: true, clientX: curX, clientY: curY
+    }));
     requestAnimationFrame(tick);
   })();
 
@@ -209,8 +214,13 @@
     var beta  = e.beta  || 0;
     var gamma = e.gamma || 0;
     if (BASE_BETA === null) BASE_BETA = beta;
-    tX = Math.max(-18, Math.min(18, (beta  - BASE_BETA) * 0.35));
-    tY = Math.max(-18, Math.min(18,  gamma              * 0.28));
+    var w = window.innerWidth, h = window.innerHeight;
+    /* gamma: stânga-dreapta (-45°…+45°) → X pe ecran */
+    /* beta:  față-spate față de poziția inițială → Y pe ecran */
+    tgtX = w / 2 + gamma * (w  / 80);
+    tgtY = h / 2 + (beta - BASE_BETA) * (h / 60);
+    tgtX = Math.max(0, Math.min(w, tgtX));
+    tgtY = Math.max(0, Math.min(h, tgtY));
   }
 
   function startGyro() {
@@ -219,7 +229,6 @@
     window.addEventListener('deviceorientation', onOrientation);
   }
 
-  /* iOS 13+ cere permisiune — reîncercăm la fiecare click până e acordată */
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     var chatBtn = document.querySelector('.chat-trigger');
     if (chatBtn) {
