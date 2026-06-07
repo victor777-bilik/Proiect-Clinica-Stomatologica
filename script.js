@@ -192,25 +192,24 @@
   var viewer = document.querySelector('spline-viewer');
   if (!viewer) return;
 
-  var parent = viewer.parentElement;
-  if (parent) { parent.style.perspective = '700px'; parent.style.transformStyle = 'preserve-3d'; }
-
   var tX = 0, tY = 0, cX = 0, cY = 0;
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 
   (function tick() {
-    cX = lerp(cX, tX, 0.07);
-    cY = lerp(cY, tY, 0.07);
-    viewer.style.transform = 'rotateX(' + cX + 'deg) rotateY(' + cY + 'deg)';
+    cX = lerp(cX, tX, 0.09);
+    cY = lerp(cY, tY, 0.09);
+    viewer.style.transform =
+      'rotateX(' + cX + 'deg) rotateY(' + cY + 'deg)' +
+      ' translateX(' + (cY * -4) + 'px) translateY(' + (cX * -3) + 'px)';
     requestAnimationFrame(tick);
   })();
 
   function onOrientation(e) {
-    var beta  = e.beta  || 0;  /* front-back tilt */
-    var gamma = e.gamma || 0;  /* left-right tilt */
-    tX = Math.max(-20, Math.min(20, (beta - 75) * 0.28));
-    tY = Math.max(-20, Math.min(20, gamma * 0.28));
+    var beta  = e.beta  || 0;
+    var gamma = e.gamma || 0;
+    tX = Math.max(-30, Math.min(30, (beta - 75) * 0.5));
+    tY = Math.max(-30, Math.min(30, gamma * 0.5));
   }
 
   function startGyro() {
