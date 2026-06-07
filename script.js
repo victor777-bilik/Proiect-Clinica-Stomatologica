@@ -36,6 +36,26 @@
   });
 })();
 
+/* ── BURGER MENU ── */
+(function () {
+  var nav    = document.querySelector('nav');
+  var burger = document.querySelector('.nav-burger');
+  if (!nav || !burger) return;
+
+  burger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    nav.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () { nav.classList.remove('open'); });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target)) nav.classList.remove('open');
+  });
+})();
+
 /* ── WARP SHADER BACKGROUND ── */
 (function () {
   var canvas = document.getElementById('mesh-bg');
