@@ -194,12 +194,13 @@
 
   var tX = 0, tY = 0, cX = 0, cY = 0;
   var BASE_BETA = null;
+  var gyroActive = false;
 
   function lerp(a, b, t) { return a + (b - a) * t; }
 
   (function tick() {
-    cX = lerp(cX, tX, 0.04);
-    cY = lerp(cY, tY, 0.04);
+    cX = lerp(cX, tX, 0.05);
+    cY = lerp(cY, tY, 0.05);
     viewer.style.transform = 'rotateX(' + cX + 'deg) rotateY(' + cY + 'deg)';
     requestAnimationFrame(tick);
   })();
@@ -208,27 +209,26 @@
     var beta  = e.beta  || 0;
     var gamma = e.gamma || 0;
     if (BASE_BETA === null) BASE_BETA = beta;
-    var dBeta = beta - BASE_BETA;
-    /* dead zone ±2° — ignoră micro-tremurături */
-    if (Math.abs(dBeta) < 2) dBeta = 0;
-    if (Math.abs(gamma) < 2) gamma = 0;
-    tX = Math.max(-7, Math.min(7, dBeta * 0.14));
-    tY = Math.max(-7, Math.min(7, gamma * 0.12));
+    tX = Math.max(-12, Math.min(12, (beta  - BASE_BETA) * 0.22));
+    tY = Math.max(-12, Math.min(12,  gamma              * 0.18));
   }
 
   function startGyro() {
+    if (gyroActive) return;
+    gyroActive = true;
     window.addEventListener('deviceorientation', onOrientation);
   }
 
-  /* iOS 13+ cere permisiune explicită la primul click pe chat */
+  /* iOS 13+ cere permisiune — reîncercăm la fiecare click până e acordată */
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     var chatBtn = document.querySelector('.chat-trigger');
     if (chatBtn) {
       chatBtn.addEventListener('click', function () {
+        if (gyroActive) return;
         DeviceOrientationEvent.requestPermission()
           .then(function (r) { if (r === 'granted') startGyro(); })
           .catch(function () {});
-      }, { once: true });
+      });
     }
   } else {
     startGyro();

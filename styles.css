@@ -543,7 +543,7 @@ nav.open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)
 .chat-scene{
   height:155px;overflow:hidden;background:#060608;
   position:relative;flex-shrink:0;
-  perspective:600px;
+  perspective:400px;
 }
 .chat-scene spline-viewer{
   width:100%;height:100%;display:block;
