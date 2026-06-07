@@ -202,8 +202,8 @@
 
   /* Simulează mousemove fluid — Spline folosește asta pentru head-tracking */
   (function tick() {
-    curX = lerp(curX, tgtX, 0.06);
-    curY = lerp(curY, tgtY, 0.06);
+    curX = lerp(curX, tgtX, 0.10);
+    curY = lerp(curY, tgtY, 0.10);
     document.dispatchEvent(new MouseEvent('mousemove', {
       bubbles: true, clientX: curX, clientY: curY
     }));
@@ -215,10 +215,8 @@
     var gamma = e.gamma || 0;
     if (BASE_BETA === null) BASE_BETA = beta;
     var w = window.innerWidth, h = window.innerHeight;
-    /* gamma: stânga-dreapta (-45°…+45°) → X pe ecran */
-    /* beta:  față-spate față de poziția inițială → Y pe ecran */
-    tgtX = w / 2 + gamma * (w  / 80);
-    tgtY = h / 2 + (beta - BASE_BETA) * (h / 60);
+    tgtX = w / 2 + gamma * (w / 20);
+    tgtY = h / 2 + (beta - BASE_BETA) * (h / 15);
     tgtX = Math.max(0, Math.min(w, tgtX));
     tgtY = Math.max(0, Math.min(h, tgtY));
   }
