@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<title>Contact — Med Life Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.79/build/spline-viewer.js"></script>
+<style>
+.nav-links a.active{color:var(--text)}
+.page-hero{
+  padding:165px 24px 72px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.page-hero h1{
+  font-size:clamp(38px,5.5vw,66px);font-weight:700;
+  letter-spacing:-0.04em;line-height:1.08;
+  max-width:700px;margin:0 auto 22px;
+}
+.page-hero h1 span{
+  background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.5));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.page-hero-sub{font-size:17px;color:var(--text2);max-width:520px;margin:0 auto;line-height:1.65}
+
+/* Contact layout */
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:28px;
+  align-items:stretch;
+}
+.contact-left{
+  display:flex;flex-direction:column;gap:20px;
+}
+
+/* Info col */
+.contact-info-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+}
+.contact-info-header{
+  padding:24px 28px;border-bottom:1px solid var(--border);
+  background:rgba(94,106,210,0.06);
+}
+.contact-info-header h3{font-size:16px;font-weight:600;margin-bottom:4px}
+.contact-info-header p{font-size:13px;color:var(--text3)}
+.contact-info-body{padding:0}
+
+.info-row{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 28px;border-bottom:1px solid var(--border);
+}
+.info-row:last-child{border-bottom:none}
+.info-icon{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;flex-shrink:0;
+}
+.info-label{font-size:12px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.info-value{font-size:14px;color:var(--text);font-weight:500;line-height:1.55}
+.info-sub{font-size:12px;color:var(--text3);margin-top:2px}
+
+/* Social row */
+.social-row{
+  display:flex;gap:8px;padding:18px 28px;
+  border-top:1px solid var(--border);
+}
+.social-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 12px;border-radius:7px;font-size:12px;font-weight:500;color:var(--text2);
+  background:var(--bg3);border:1px solid var(--border);cursor:pointer;
+  text-decoration:none;transition:background .15s,color .15s;
+}
+.social-btn:hover{background:rgba(94,106,210,0.1);color:var(--text);border-color:rgba(94,106,210,0.3)}
+
+/* Map embed */
+.map-wrap{
+  flex:1;border-radius:14px;overflow:hidden;
+  border:1px solid var(--border);position:relative;
+  display:flex;flex-direction:column;min-height:220px;
+}
+.map-wrap iframe{
+  flex:1;display:block;width:100%;border:none;
+  filter:grayscale(25%) contrast(1.05) brightness(0.97);
+  min-height:0;
+}
+.map-footer{
+  background:var(--bg2);padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border);flex-shrink:0;
+}
+.map-addr{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:6px}
+.map-addr span{font-weight:500;color:var(--text)}
+.map-link{
+  font-size:13px;font-weight:500;color:var(--accent);
+  text-decoration:none;white-space:nowrap;
+  padding:6px 14px;border-radius:6px;
+  border:1px solid rgba(94,106,210,0.35);
+  transition:background .15s,color .15s;
+}
+.map-link:hover{background:rgba(94,106,210,0.12);color:#fff}
+
+/* Form col */
+.contact-form-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+}
+.contact-form-header{
+  padding:24px 28px;border-bottom:1px solid var(--border);
+  background:rgba(94,106,210,0.06);
+}
+.contact-form-header h3{font-size:16px;font-weight:600;margin-bottom:4px}
+.contact-form-header p{font-size:13px;color:var(--text3)}
+.contact-form-body{padding:24px 28px}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-row.single{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-label{font-size:12px;font-weight:500;color:var(--text3);letter-spacing:.02em}
+.form-input,.form-select,.form-textarea{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;padding:10px 14px;
+  font-size:14px;font-family:'Inter',sans-serif;color:var(--text);
+  outline:none;transition:border-color .15s;
+  width:100%;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text3)}
+.form-select{cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath fill='rgba(255,255,255,0.3)' d='M6 8L1 3h10z'/%3e%3c/svg%3e");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;
+}
+.form-select option{background:var(--bg2);color:var(--text)}
+.form-textarea{resize:vertical;min-height:100px;line-height:1.55}
+.form-note{font-size:12px;color:var(--text3);margin-top:6px}
+
+.form-submit{
+  width:100%;padding:13px;border-radius:8px;
+  background:var(--accent);border:none;
+  font-size:15px;font-weight:500;color:#fff;
+  cursor:pointer;transition:background .15s;
+  font-family:'Inter',sans-serif;margin-top:6px;
+}
+.form-submit:hover{background:var(--accent2)}
+
+/* Send animation */
+.send-journey{
+  margin-top:28px;padding-top:24px;
+  border-top:1px solid var(--border);
+}
+.send-journey-label{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:20px;text-align:center;
+}
+.send-track{
+  position:relative;height:52px;display:flex;align-items:center;
+  margin:0 8px;
+}
+.send-line{
+  position:absolute;left:24px;right:24px;top:50%;
+  height:1px;border:none;
+  background:repeating-linear-gradient(90deg,
+    rgba(94,106,210,0.35) 0px,rgba(94,106,210,0.35) 6px,
+    transparent 6px,transparent 14px);
+}
+.send-plane{
+  position:absolute;top:50%;
+  transform:translateY(-50%);
+  animation:flyPath 2.8s cubic-bezier(.4,0,.6,1) infinite;
+  z-index:2;
+  filter:drop-shadow(0 0 8px rgba(94,106,210,0.7));
+}
+.send-plane svg{display:block;}
+@keyframes flyPath{
+  0%  {left:2%; opacity:0; transform:translateY(-50%) scale(.7);}
+  8%  {opacity:1; transform:translateY(-50%) scale(1);}
+  75% {left:88%; opacity:1; transform:translateY(-52%) scale(1);}
+  88% {left:96%; opacity:0; transform:translateY(-50%) scale(.6);}
+  89% {left:2%;  opacity:0; transform:translateY(-50%) scale(.6);}
+  100%{left:2%;  opacity:0; transform:translateY(-50%) scale(.7);}
+}
+.send-nodes{
+  position:absolute;left:0;right:0;top:0;bottom:0;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.send-node{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg3);border:1px solid var(--border);
+  font-size:18px;position:relative;z-index:3;
+  flex-shrink:0;
+}
+.send-node::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1.5px solid transparent;
+  animation:nodePulse 2.8s ease-in-out infinite;
+}
+.send-node:nth-child(1)::after{animation-delay:0s; border-color:rgba(94,106,210,0.5);}
+.send-node:nth-child(2)::after{animation-delay:.9s; border-color:rgba(63,207,142,0.5);}
+.send-node:nth-child(3)::after{animation-delay:1.8s;border-color:rgba(249,115,22,0.4);}
+@keyframes nodePulse{
+  0%,100%{opacity:0;transform:scale(.85);}
+  40%    {opacity:1;transform:scale(1.15);}
+  70%    {opacity:.4;transform:scale(1.3);}
+}
+.send-labels{
+  display:flex;justify-content:space-between;
+  margin-top:10px;padding:0 0;
+}
+.send-lbl{
+  width:44px;text-align:center;
+  font-size:10.5px;color:var(--text3);line-height:1.4;
+  letter-spacing:.01em;
+}
+.send-lbl strong{display:block;font-size:11.5px;color:var(--text2);font-weight:600;margin-bottom:1px;}
+
+/* Success state (hidden) */
+.form-success{
+  display:none;text-align:center;padding:32px 24px;
+}
+.form-success h4{font-size:18px;font-weight:600;margin-bottom:8px}
+.form-success p{font-size:14px;color:var(--text2)}
+
+/* Quick-contact strip */
+.quick-contact{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin-bottom:72px;
+}
+.qc-card{
+  background:var(--bg2);padding:28px 24px;text-align:center;
+  transition:background .15s;cursor:pointer;
+}
+.qc-card:hover{background:var(--bg3)}
+.qc-icon{font-size:24px;margin-bottom:10px}
+.qc-label{font-size:13px;font-weight:600;margin-bottom:4px}
+.qc-value{font-size:14px;color:var(--accent);font-weight:500}
+.qc-sub{font-size:12px;color:var(--text3);margin-top:2px}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:2px}
+.faq-item{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;
+}
+.faq-question{
+  padding:16px 20px;font-size:15px;font-weight:500;
+  cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;transition:background .15s;
+  user-select:none;
+}
+.faq-question:hover{background:var(--bg3)}
+.faq-chevron{
+  font-size:12px;color:var(--text3);transition:transform .2s;flex-shrink:0;
+}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height .3s ease,padding .3s ease;
+}
+.faq-answer-inner{
+  padding:0 20px 16px;font-size:14px;color:var(--text2);line-height:1.68;
+}
+.faq-item.open .faq-answer{max-height:200px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+
+@media(max-width:768px){
+  .contact-grid{grid-template-columns:1fr}
+  .contact-left{min-height:auto}
+  .map-wrap{min-height:260px}
+  .form-row{grid-template-columns:1fr}
+  .quick-contact{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<canvas id="mesh-bg"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+    </svg>
+    Med Life Dental
+  </a>
+  <ul class="nav-links">
+    <li><a href="servicii.html">Servicii</a></li>
+    <li><a href="tratamente.html">Tratamente</a></li>
+    <li><a href="tehnologie.html">Tehnologie</a></li>
+    <li><a href="echipa.html">Echipa</a></li>
+    <li><a href="preturi.html">Prețuri</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-ghost" onclick="location.href='galerie.html'">Galerie</button>
+    <button class="btn-primary" onclick="document.getElementById('programare-form').scrollIntoView({behavior:'smooth'})">Programare Online</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Răspuns in Max. 2 Ore &bull; Consultație Gratuită
+  </div>
+  <h1><span>Suntem Alături de Tine.<br>Oricând.</span></h1>
+  <p class="page-hero-sub">
+    Fie ca vrei o programare, ai o urgență sau ai o simplă întrebare, echipa Med Life Dental este la dispozitia ta. Contactează-ne prin orice canal preferi.
+  </p>
+</div>
+
+<!-- QUICK CONTACT STRIP -->
+<section style="padding-top:0">
+  <div class="container">
+    <div class="quick-contact">
+      <div class="qc-card" onclick="location.href='tel:0800123456'">
+        <div class="qc-icon">&#128222;</div>
+        <div class="qc-label">Telefon</div>
+        <div class="qc-value">0800 123 456</div>
+        <div class="qc-sub">Linie gratuită &bull; L-V 8:00&ndash;20:00</div>
+      </div>
+      <div class="qc-card" onclick="location.href='mailto:contact@medlifedental.ro'">
+        <div class="qc-icon">&#128140;</div>
+        <div class="qc-label">Email</div>
+        <div class="qc-value">contact@medlifedental.ro</div>
+        <div class="qc-sub">Răspuns in maxim 2 ore</div>
+      </div>
+      <div class="qc-card">
+        <div class="qc-icon">&#128680;</div>
+        <div class="qc-label">Urgențe 24/7</div>
+        <div class="qc-value">0800 456 789</div>
+        <div class="qc-sub">Non-stop &bull; Sâmbătă &amp; Duminică</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM + INFO -->
+<section style="padding-top:0" id="programare-form">
+  <div class="container">
+    <div style="margin-bottom:40px">
+      <div class="section-label">Programare Online</div>
+      <h2 class="section-title">Trimite cererea ta.</h2>
+      <p class="section-sub">Completează formularul si iti confirmam programarea in maxim 2 ore in orele de program.</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- INFO + MAP -->
+      <div class="contact-left">
+        <div class="contact-info-card">
+          <div class="contact-info-header">
+            <h3>Informații Clinică</h3>
+            <p>Toate detaliile pentru a ne vizita sau contacta</p>
+          </div>
+          <div class="contact-info-body">
+            <div class="info-row">
+              <div class="info-icon" style="background:rgba(94,106,210,0.15)">&#128205;</div>
+              <div>
+                <div class="info-label">Adresă</div>
+                <div class="info-value">Str. Mihai Eminescu 42, Sector 2<br>București, Romania</div>
+                <div class="info-sub">Metrou: Piata Romana (2 min)</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon" style="background:rgba(63,207,142,0.12)">&#128337;</div>
+              <div>
+                <div class="info-label">Program</div>
+                <div class="info-value">Luni &mdash; Vineri: 08:00 &mdash; 20:00</div>
+                <div class="info-value" style="margin-top:2px">Sâmbătă: 09:00 &mdash; 15:00</div>
+                <div class="info-sub">Urgențe: non-stop 24/7</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon" style="background:rgba(249,115,22,0.12)">&#128222;</div>
+              <div>
+                <div class="info-label">Telefon</div>
+                <div class="info-value">0800 123 456 <span style="font-size:11px;color:var(--text3)">(gratuit)</span></div>
+                <div class="info-value" style="margin-top:2px">+40 21 300 45 67 <span style="font-size:11px;color:var(--text3)">(fix)</span></div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon" style="background:rgba(139,92,246,0.12)">&#128140;</div>
+              <div>
+                <div class="info-label">Email</div>
+                <div class="info-value">contact@medlifedental.ro</div>
+                <div class="info-sub">Răspuns garantat in 2 ore (program)</div>
+              </div>
+            </div>
+          </div>
+          <div class="social-row">
+            <a class="social-btn" href="#">&#128248; Facebook</a>
+            <a class="social-btn" href="#">&#128247; Instagram</a>
+            <a class="social-btn" href="#">&#128250; YouTube</a>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <iframe
+            src="https://maps.google.com/maps?q=Strâda+Mihai+Eminescu+42,+Sector+2,+București,+Romania&output=embed&hl=ro&z=16"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrâde"
+            title="Med Life Dental — locație">
+          </iframe>
+          <div class="map-footer">
+            <span class="map-addr">&#128205; <span>Str. Mihai Eminescu 42</span>, Sector 2, București</span>
+            <a class="map-link"
+               href="https://www.google.com/maps/search/Strâda+Mihai+Eminescu+42,+Sector+2,+București"
+               target="_blank" rel="noopener">
+              &#128648; Indicâții rutiere
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="contact-form-card">
+        <div class="contact-form-header">
+          <h3>Cerere de Programare</h3>
+          <p>Consultația inițială este gratuită &mdash; confirmare in 2 ore</p>
+        </div>
+        <div class="contact-form-body" id="formWrap">
+          <form onsubmit="handleForm(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nume complet *</label>
+                <input type="text" class="form-input" placeholder="Ex: Maria Ionescu" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Telefon *</label>
+                <input type="tel" class="form-input" placeholder="07xx xxx xxx" required>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="adresă@email.ro">
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-group">
+                <label class="form-label">Serviciu solicitat</label>
+                <select class="form-select">
+                  <option value="" disabled selected>Alege serviciul dorit...</option>
+                  <option>Consultație inițială gratuită</option>
+                  <option>Implantologie</option>
+                  <option>Smile Design 3D</option>
+                  <option>Ortodonție (Invisalign / aparate)</option>
+                  <option>Estetică dentara (fațete, coroane)</option>
+                  <option>Tratament canal (endodonție)</option>
+                  <option>Stomatologie pediatrică</option>
+                  <option>Urgență dentara</option>
+                  <option>Profilaxie si igiena</option>
+                  <option>Altă specialitate</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Data preferată</label>
+                <input type="date" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ora preferată</label>
+                <select class="form-select">
+                  <option value="" disabled selected>Selecteaza ora...</option>
+                  <option>08:00 &mdash; 10:00</option>
+                  <option>10:00 &mdash; 12:00</option>
+                  <option>12:00 &mdash; 14:00</option>
+                  <option>14:00 &mdash; 16:00</option>
+                  <option>16:00 &mdash; 18:00</option>
+                  <option>18:00 &mdash; 20:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-group">
+                <label class="form-label">Mesaj (optional)</label>
+                <textarea class="form-textarea" placeholder="Descrie pe scurt situația sau întrebarea ta. Cu cât mai multe detalii, cu atat te putem ajuta mai bine..."></textarea>
+              </div>
+            </div>
+            <p class="form-note">&#128274; Datele tale sunt confidentiale si protejate conform GDPR. Nu le vom transmite niciodată tertilor.</p>
+            <button type="submit" class="form-submit">Trimite Cererea de Programare &#8594;</button>
+
+            <!-- SEND JOURNEY ANIMATION -->
+            <div class="send-journey">
+              <div class="send-journey-label">Ce se întâmpla după ce trimiti</div>
+              <div class="send-track">
+                <div class="send-line"></div>
+                <div class="send-plane">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 2L11 13" stroke="#5E6AD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#5E6AD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(94,106,210,0.15)"/>
+                  </svg>
+                </div>
+                <div class="send-nodes">
+                  <div class="send-node">&#128228;</div>
+                  <div class="send-node">&#128336;</div>
+                  <div class="send-node">&#128241;</div>
+                </div>
+              </div>
+              <div class="send-labels">
+                <div class="send-lbl"><strong>Cerere</strong>primita instant</div>
+                <div class="send-lbl"><strong>Verificare</strong>max. 2 ore</div>
+                <div class="send-lbl"><strong>SMS</strong>confirmare</div>
+              </div>
+            </div>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div style="font-size:40px;margin-bottom:12px">&#9989;</div>
+            <h4>Cererea a fost trimisa!</h4>
+            <p>Te vom contacta in maxim 2 ore (in orele de program) pentru confirmarea programarii. Mulțumim ca ai ales Med Life Dental!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div style="margin-bottom:40px;text-align:center">
+      <div class="section-label">Întrebări Frecvente</div>
+      <h2 style="font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-0.03em;margin-bottom:10px">Răspunsuri la cele mai comune întrebări</h2>
+      <p style="font-size:15px;color:var(--text2);max-width:460px;margin:0 auto">Nu gasesti răspunsul? Scrie-ne sau sună-ne direct.</p>
+    </div>
+    <div class="faq-list" style="max-width:760px;margin:0 auto">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Consultația inițială chiar este gratuită? Ce include?
+          <span class="faq-chevron">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Da, 100% gratuită. Include examinare clinică completă a tuturor dintilor si gingiilor, radiografie panoramica digitală (OPG) si un plan de tratament detaliat cu eștimare de cost. Durată: 30&ndash;45 minute. Fără nicio obligatie de a începe tratamentul.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Lucrati cu asigurări de sănătate private?
+          <span class="faq-chevron">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Da, suntem parteneri cu 30+ companii de asigurări private, inclusiv Regina Maria, Medicover, Signal Iduna, NN, Generali, Allianz-Tiriac, UNIQA si multi alții. Prezinti cardul la recepție si noi ne ocupam de decontare direct. Nu este nevoie de documente suplimentare sau decontare ulterioara.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Cât dureaza un implant dentar de la inceput la final?
+          <span class="faq-chevron">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">In medie, un implant complet (implant + coroana definitivă) dureaza 3&ndash;6 luni, in funcție de necesitatea grefarii osoase si viteza de osteointegrare. Consultația + CBCT + planificarea: 1&ndash;2 săptămâni. Inserarea implantului: o singură ședință. Osteointegrare: 8&ndash;16 săptămâni. Coroana definitivă: 1&ndash;2 săptămâni după osteointegrare.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Aveți optiuni de plată in rate?
+          <span class="faq-chevron">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Da. Oferim finanțare in rate fără dobândă (0%) pentru tratamente de peste 1.000 lei, cu până la 48 de rate lunare. Aprobarea se face rapid la recepție, in aproximativ 30 de minute. Nu este nevoie de o banca separată &mdash; gestionam totul intern in parteneriat cu un IFN autorizat.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Ce fac dacă am o urgență dentara noaptea sau in weekend?
+          <span class="faq-chevron">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Suntem disponibili 24/7 pentru urgențe dentare. Sună la linia dedicâtă 0800 456 789 (gratuită, non-stop). Cabinetul de urgență este separat de cabinetele ordinare si este echipat complet. Durere severa, trauma, absces, dinte spart sau orice altă urgență &mdash; intervenim in aceeași ora, inclusiv sâmbătă, duminică si de sarbatori.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1">
+    <h2>Nu mai amana. Zâmbetul tau te așteaptă.</h2>
+    <p>Prima consultație este gratuită. Vino sau sună-ne &mdash; suntem gata sa te ajutam astăzi.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-primary" onclick="document.getElementById('programare-form').scrollIntoView({behavior:'smooth'})">Programează Online &mdash; Gratuit</button>
+      <button class="btn-hero-ghost" onclick="location.href='tel:0800123456'">Sună: 0800 123 456</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html"><svg width="16" height="16" viewBox="0 0 22 22" fill="none"><path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>Med Life Dental</a>
+      <p>Clinică stomatologică premium &mdash; 15 ani de excelență in îngrijirea zâmbetelor din Romania.</p>
+    </div>
+    <div class="footer-col"><h4>Tratamente</h4><ul><li><a href="tratamente.html">Implantologie</a></li><li><a href="tratamente.html">Ortodonție</a></li><li><a href="tratamente.html">Estetică Dentara</a></li><li><a href="tratamente.html">Endodonție</a></li></ul></div>
+    <div class="footer-col"><h4>Servicii</h4><ul><li><a href="servicii.html">Smile Design 3D</a></li><li><a href="servicii.html">Parodontologie</a></li><li><a href="servicii.html">Protetică</a></li><li><a href="servicii.html">Urgențe 24/7</a></li></ul></div>
+    <div class="footer-col"><h4>Clinică</h4><ul><li><a href="echipa.html">Echipa Medicală</a></li><li><a href="tehnologie.html">Tehnologie</a></li><li><a href="preturi.html">Prețuri</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Pacient</h4><ul><li><a href="contact.html">Programare Online</a></li><li><a href="preturi.html">Prețuri &amp; Pachete</a></li><li><a href="preturi.html">Finanțare Rate</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <div class="footer-bottom-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Google Maps</a></div>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<button class="chat-trigger" id="chatTrigger" onclick="toggleChat()">
+  <div class="chat-pulse"></div><div class="chat-notif" id="chatNotif">1</div>
+  <svg id="chatIconOpen" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="8" width="14" height="10" rx="2" stroke="white" stroke-width="1.5"/><path d="M9 4h2a1 1 0 011 1v3H9V4z" stroke="white" stroke-width="1.5"/><path d="M13 4h2a1 1 0 011 1v3h-3V4z" stroke="white" stroke-width="1.5"/><circle cx="9.5" cy="12.5" r="1.5" fill="white"/><circle cx="14.5" cy="12.5" r="1.5" fill="white"/><path d="M9.5 15.5h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12v-1M21 12v-1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <svg id="chatIconClose" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-hdr"><div class="chat-hdr-info"><div class="chat-hdr-av">&#129302;</div><div><div class="chat-hdr-name">Med Life AI</div><div class="chat-hdr-status"><div class="chat-online-dot"></div>Online acum &bull; răspunde instant</div></div></div><button class="chat-close-btn" onclick="toggleChat()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="chat-scene"><spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer><div class="chat-scene-label">Asistent AI</div></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-qr" id="chatQR">
+    <button class="qr-btn" onclick="sendQR(this,'Vreau o programare')">&#128197; Programare</button>
+    <button class="qr-btn" onclick="sendQR(this,'Cât costa un implant?')">&#129463; Implant</button>
+    <button class="qr-btn" onclick="sendQR(this,'Spune-mi despre Invisalign')">&#128578; Invisalign</button>
+    <button class="qr-btn" onclick="sendQR(this,'Vreau sa-mi albesc dintii')">&#10024; Albire</button>
+    <button class="qr-btn" onclick="sendQR(this,'Am o urgență dentara')">&#128680; Urgență</button>
+    <button class="qr-btn" onclick="sendQR(this,'Ce prețuri aveți?')">&#128176; Prețuri</button>
+    <button class="qr-btn" onclick="sendQR(this,'Acceptați asigurări?')">&#128203; Asigurări</button>
+    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locâție</button>
+  </div>
+  <div class="chat-input-row"><textarea class="chat-ta" id="chatTA" placeholder="Scrie un mesaj..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();chatSend()}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea><button class="chat-send-btn" onclick="chatSend()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+
+<script src="script.js"></script>
+<script>
+function toggleFaq(el){
+  const item=el.parentElement;
+  item.classList.toggle('open');
+}
+function handleForm(e){
+  e.preventDefault();
+  document.querySelector('#formWrap form').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+}
+</script>
+</body>
+</html>

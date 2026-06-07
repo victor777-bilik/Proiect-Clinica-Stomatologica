@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<title>Tehnologie — Med Life Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.79/build/spline-viewer.js"></script>
+<style>
+.nav-links a.active{color:var(--text)}
+.page-hero{
+  padding:165px 24px 80px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.page-hero h1{
+  font-size:clamp(38px,5.5vw,66px);font-weight:700;
+  letter-spacing:-0.04em;line-height:1.08;
+  max-width:700px;margin:0 auto 22px;
+}
+.page-hero h1 span{
+  background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.5));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.page-hero-sub{font-size:17px;color:var(--text2);max-width:560px;margin:0 auto;line-height:1.65}
+
+/* Tech card */
+.tech-grid{display:flex;flex-direction:column;gap:2px}
+.tech-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:40px 48px;
+  display:grid;grid-template-columns:1fr 1.4fr;gap:60px;
+  align-items:start;
+  transition:background .18s;
+}
+.tech-card:hover{background:var(--bg3)}
+.tech-card-left{}
+.tech-num{
+  font-size:clamp(40px,6vw,64px);font-weight:700;letter-spacing:-0.06em;
+  background:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0.05));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1;margin-bottom:12px;
+}
+.tech-label{
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;
+}
+.tech-card h3{
+  font-size:clamp(18px,2.5vw,24px);font-weight:700;
+  letter-spacing:-0.02em;margin-bottom:8px;
+}
+.tech-card-spec{
+  font-size:13px;color:var(--text3);margin-bottom:20px;
+}
+.tech-badge-row{display:flex;flex-wrap:wrap;gap:8px}
+.tech-badge{
+  font-size:11px;font-weight:600;letter-spacing:.04em;
+  padding:4px 10px;border-radius:4px;
+  color:var(--accent);background:rgba(94,106,210,0.1);border:1px solid rgba(94,106,210,0.2);
+}
+.tech-badge.g{color:var(--green);background:rgba(63,207,142,0.1);border-color:rgba(63,207,142,0.2)}
+.tech-badge.o{color:var(--orange);background:rgba(249,115,22,0.1);border-color:rgba(249,115,22,0.2)}
+.tech-badge.p{color:var(--purple);background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2)}
+
+.tech-card-right{}
+.tech-card-right h4{font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em}
+.tech-card-right p{font-size:14px;color:var(--text2);line-height:1.68;margin-bottom:20px}
+.tech-benefits{display:flex;flex-direction:column;gap:8px}
+.tech-benefit{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--text2);line-height:1.5;
+}
+.tech-benefit::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:6px;
+}
+
+/* Stats band */
+.stats-band{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  margin:48px 0;
+}
+.stat-item{
+  background:var(--bg2);padding:28px 24px;text-align:center;
+}
+.stat-num{
+  font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-0.05em;
+  background:linear-gradient(135deg,#fff,rgba(255,255,255,0.5));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:6px;
+}
+.stat-label{font-size:13px;color:var(--text3);line-height:1.4}
+
+/* Investment section */
+.invest-wrap{
+  background:linear-gradient(135deg,rgba(94,106,210,0.08),rgba(139,92,246,0.05));
+  border:1px solid rgba(94,106,210,0.2);border-radius:14px;padding:48px;text-align:center;
+}
+
+@media(max-width:768px){
+  .tech-card{grid-template-columns:1fr;gap:28px;padding:28px 24px}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .invest-wrap{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+<canvas id="mesh-bg"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+    </svg>
+    Med Life Dental
+  </a>
+  <ul class="nav-links">
+    <li><a href="servicii.html">Servicii</a></li>
+    <li><a href="tratamente.html">Tratamente</a></li>
+    <li><a href="tehnologie.html" class="active">Tehnologie</a></li>
+    <li><a href="echipa.html">Echipa</a></li>
+    <li><a href="preturi.html">Prețuri</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-ghost" onclick="location.href='galerie.html'">Galerie</button>
+    <button class="btn-primary" onclick="location.href='contact.html'">Programare Online</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Investiție &euro;2.4M in Echipamente &mdash; Actualizată Anual
+  </div>
+  <h1><span>Tehnologie de Ultima Generație.<br>La Fiecare Tratament.</span></h1>
+  <p class="page-hero-sub">
+    Precizia diagnosticului si sigurănta tratamentului nu sunt optionale. Inveștim constant in cele mai avansate echipamente disponibile la nivel european &mdash; pentru ca pacienții nostri sa primeasca cel mai bun standard de îngrijire.
+  </p>
+</div>
+
+<!-- STATS BAND -->
+<section style="padding-top:0">
+  <div class="container">
+    <div class="stats-band">
+      <div class="stat-item">
+        <div class="stat-num">0.2<span style="font-size:0.5em">mm</span></div>
+        <div class="stat-label">Precizie scanner CBCT 3D</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3<span style="font-size:0.5em">min</span></div>
+        <div class="stat-label">Scanare intraorala completă</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1<span style="font-size:0.5em">zi</span></div>
+        <div class="stat-label">Lucrare protetică in-house</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">90<span style="font-size:0.5em">%</span></div>
+        <div class="stat-label">Reducere râdiație RVG vs film</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH CARDS -->
+<section style="padding-top:0">
+  <div class="container">
+    <div style="margin-bottom:48px">
+      <div class="section-label">Echipamente</div>
+      <h2 class="section-title">6 sisteme care definesc standardul nostru</h2>
+      <p class="section-sub">Fiecare echipament este ales după criterii stricte de acuratețe clinică, sigurănta pacientului si rezultate demonstrabile.</p>
+    </div>
+
+    <div class="tech-grid">
+
+      <!-- 1. CBCT -->
+      <div class="tech-card">
+        <div class="tech-card-left">
+          <div class="tech-label">Diagnosticare</div>
+          <div class="tech-num">3D</div>
+          <h3>CBCT Cone Beam Sirona Orthophos S3D</h3>
+          <div class="tech-card-spec">Doză efectiva: 11&ndash;674 µSv &bull; Voxel: 0.2&ndash;0.4mm &bull; Camp vizual: 8&times;8 până la 16&times;13cm</div>
+          <div class="tech-badge-row">
+            <span class="tech-badge">Radiografie 3D</span>
+            <span class="tech-badge g">Doză minima</span>
+            <span class="tech-badge o">Implantologie</span>
+          </div>
+        </div>
+        <div class="tech-card-right">
+          <h4>De ce CBCT 3D face diferenta</h4>
+          <p>Râdiografia panoramica 2D nu arată profunzimea osului sau relatia exacta cu nervii. CBCT 3D genereaza o reconstrucție tridimensionala completă a maxilarului — medicul vede exact grosimea osului, pozitia sinusului maxilar si traseul nervului mandibular înainte de orice incizie.</p>
+          <div class="tech-benefits">
+            <div class="tech-benefit">Planificarea ghidata digital a implantelor cu ghid chirurgical custom</div>
+            <div class="tech-benefit">Detecția leziunilor periapicale invizibile pe radiografia 2D</div>
+            <div class="tech-benefit">Evaluarea sinusului maxilar pentru grefare sinusala</div>
+            <div class="tech-benefit">Diagnosticul precis in ortodonție, endodonție si chirurgie</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Scanner intraoral -->
+      <div class="tech-card">
+        <div class="tech-card-left">
+          <div class="tech-label">Amprente Digitale</div>
+          <div class="tech-num">3S</div>
+          <h3>Scanner Intraoral 3Shape Trios 4</h3>
+          <div class="tech-card-spec">Acuratețe: 6.9µm &bull; Timp arcada: 2&ndash;3 min &bull; Color in timp real</div>
+          <div class="tech-badge-row">
+            <span class="tech-badge">Fără silicon</span>
+            <span class="tech-badge g">Color 3D</span>
+            <span class="tech-badge p">CAD/CAM ready</span>
+          </div>
+        </div>
+        <div class="tech-card-right">
+          <h4>Amprente digitale — confort si precizie maxima</h4>
+          <p>Amprentă trâditionala cu silicon este inconfortabilă, inexacta si dureza 7&ndash;10 minute. Scaner-ul 3Shape Trios 4 capteaza arcada completă in culori reale in sub 3 minute, fără greata, fără disconfort, cu precizie de 7 microni &mdash; de 20 de ori mai exact decât amprentă clasica.</p>
+          <div class="tech-benefits">
+            <div class="tech-benefit">Transmitere instantanee digitală câtre laborator sau freza CAD/CAM</div>
+            <div class="tech-benefit">Pacientul vede scanarea in timp real pe ecran</div>
+            <div class="tech-benefit">Arhivare digitală permanenta &mdash; comparatii in timp ale tratamentului</div>
+            <div class="tech-benefit">Compatibil cu Invisalign, DSD, protetică si implantologie</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CAD/CAM -->
+      <div class="tech-card">
+        <div class="tech-card-left">
+          <div class="tech-label">Protetică in-house</div>
+          <div class="tech-num">1h</div>
+          <h3>Freza CAD/CAM Cerec Primemill</h3>
+          <div class="tech-card-spec">Materiale: Zirconiu / e.max / PMMA &bull; Precizie frezare: ±20µm &bull; Ciclu: 25&ndash;35 min</div>
+          <div class="tech-badge-row">
+            <span class="tech-badge">Coroana in 1 ora</span>
+            <span class="tech-badge g">In-house</span>
+            <span class="tech-badge o">Zero laborator extern</span>
+          </div>
+        </div>
+        <div class="tech-card-right">
+          <h4>Coroana definitivă in aceeași ședință</h4>
+          <p>Trâditional, o coroana ceramica necesita 2 săptămâni si 2 ședințe: amprentă, coroana provizorie si revenire pentru montaj. Cu freza Cerec Primemill, după scanarea digitală freza sculpteaza coroana in zirconiu sau ceramica e.max direct in clinică in 25&ndash;35 de minute. Pleci cu dinte definitiv in aceeași zi.</p>
+          <div class="tech-benefits">
+            <div class="tech-benefit">Coroana, inlay, onlay sau fateta in maximum 90 minute total</div>
+            <div class="tech-benefit">Materiale certificâte: zirconiu monolitic, IPS e.max, PMMA</div>
+            <div class="tech-benefit">Fără contactul uman al laboratorului extern &mdash; igienica maxima</div>
+            <div class="tech-benefit">Cost mai mic pentru pacient decât lucrarea de laborator clasica</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Laser -->
+      <div class="tech-card">
+        <div class="tech-card-left">
+          <div class="tech-label">Chirurgie Laser</div>
+          <div class="tech-num">Er</div>
+          <h3>Laser Dentar Fotona LightWalker</h3>
+          <div class="tech-card-spec">Tip: Er:YAG + Nd:YAG &bull; Lungime unda: 2940nm / 1064nm &bull; Putere până la 20W</div>
+          <div class="tech-badge-row">
+            <span class="tech-badge">Fără bisturiu</span>
+            <span class="tech-badge g">Vindecare 3x</span>
+            <span class="tech-badge p">Fotona Certified</span>
+          </div>
+        </div>
+        <div class="tech-card-right">
+          <h4>Chirurgie fără bisturiu, fără sutură, fără frică</h4>
+          <p>Laserul Er:YAG actioneaza precis pe tesuturi moi si osoase, vaporizand celulele tinta fără a afecta tesuturile inconjuratoare. Consecințele: fără sangerare semnificâțiva, fără sutură, cu dezinfecție simultana a zonei si vindecare de 3 ori mai rapidă decât chirurgia clasica.</p>
+          <div class="tech-benefits">
+            <div class="tech-benefit">Chirurgie gingivală, frenectomie, operculectomie fără bisturiu</div>
+            <div class="tech-benefit">Dezinfecție canale râdiculare cu laser endodontic</div>
+            <div class="tech-benefit">Albire gingivală (depigmentare melanica) neinvaziva</div>
+            <div class="tech-benefit">Bioștimulare pentru accelerarea vindecarii postoperatorii</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Sterilizare -->
+      <div class="tech-card">
+        <div class="tech-card-left">
+          <div class="tech-label">Sigurănta</div>
+          <div class="tech-num">B</div>
+          <h3>Autoclav Clașa B Melag Vacuklav 44 B+</h3>
+          <div class="tech-card-spec">Temperatura: 134°C &bull; Presiune: 2.16 bar &bull; Ciclu vacuum: 22 min &bull; Înregistrare automata</div>
+          <div class="tech-badge-row">
+            <span class="tech-badge g">Certificât CE</span>
+            <span class="tech-badge">Ciclu vacuum</span>
+            <span class="tech-badge o">Trașat electronic</span>
+          </div>
+        </div>
+        <div class="tech-card-right">
+          <h4>Zero risc de infectie &mdash; sterilizare certificâtă</h4>
+          <p>Autoclavul de clașa B cu prevacuum fractionat este standardul maxim de sterilizare in stomatologie. Spre deosebire de clașa N (fără vacuum), ciclul B patrunde in lumenii instrumentelor si elimina chiar si sporii bacterieni rezistenti. Fiecare ciclu este înregistrat electronic si arhivat.</p>
+          <div class="tech-benefits">
+            <div class="tech-benefit">Protocoale conforme Directivei Europene 93/42/EEC</div>
+            <div class="tech-benefit">Testare biologica săptămânăla cu indicâtori Helix</div>
+            <div class="tech-benefit">Ambalare dublu-strat cu indicâtori chimici clașa VI</div>
+            <div class="tech-benefit">Trașabilitate completă &mdash; documentatie pentru fiecare instrument</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. RVG -->
+      <div class="tech-card">
+        <div class="tech-card-left">
+          <div class="tech-label">Râdiologie</div>
+          <div class="tech-num">RVG</div>
+          <h3>Radiografie Digitală RVG Carestream</h3>
+          <div class="tech-card-spec">Senzor: 9.8µm pixel &bull; Reducere râdiație: 90% &bull; Imagine disponibila: &lt;1 sec</div>
+          <div class="tech-badge-row">
+            <span class="tech-badge g">-90% râdiație</span>
+            <span class="tech-badge">Instantaneu</span>
+            <span class="tech-badge p">Zoom digital</span>
+          </div>
+        </div>
+        <div class="tech-card-right">
+          <h4>Diagnostic imediat cu 90% mai putina râdiație</h4>
+          <p>Râdiovizigraf-ul digital produce imaginea in mai putin de o secundă si expune pacientul la 90% mai putina râdiație decât radiografia conventionala pe film. Imaginea poate fi marita, contrastata si adnotata in timp real pentru a explica diagnosticul pacientului vizual si transparent.</p>
+          <div class="tech-benefits">
+            <div class="tech-benefit">Ideal pentru copii si pacienți care necesita radiografii frecvente</div>
+            <div class="tech-benefit">Stocaj digital cu comparatii in timp pentru monitorizarea tratamentului</div>
+            <div class="tech-benefit">Imagine vizibilă imediat pe ecranul din cabinet &mdash; fără developare</div>
+            <div class="tech-benefit">Compatibil cu toate sistemele de management al clinicii</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tech-grid -->
+
+    <!-- INVESTMENT -->
+    <div class="invest-wrap" style="margin-top:64px">
+      <div class="section-label">Angajament</div>
+      <h2 style="font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-0.03em;margin-bottom:14px;max-width:560px;margin-left:auto;margin-right:auto">
+        Inveștim constant pentru ca tu sa primesti cel mai bun tratament
+      </h2>
+      <p style="font-size:16px;color:var(--text2);max-width:520px;margin:0 auto 28px;line-height:1.65">
+        Clinică Med Life Dental reinvesteste anual in upgrâde-uri de echipamente si formare continua a medicilor. Nu suntem o clinică din 2010 cu echipamente invechite &mdash; suntem actualizati la standardele europene de astăzi.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <span style="font-size:13px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px">&#9989; ISO 9001 Certificât</span>
+        <span style="font-size:13px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px">&#9989; CMR Acreditată</span>
+        <span style="font-size:13px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px">&#9989; Audit DSP anual</span>
+        <span style="font-size:13px;color:var(--text2);background:var(--bg3);border:1px solid var(--border);padding:6px 16px;border-radius:999px">&#9989; Echipamente CE</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1">
+    <h2>Vino sa descoperi diferenta.</h2>
+    <p>Consultația inițială gratuită include radiografie digitală, examinare completă si planul de tratament — folosind aceeași tehnologie de vârf descrisa mai sus.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-primary" onclick="location.href='contact.html'">Programează Gratuit</button>
+      <button class="btn-hero-ghost" onclick="location.href='echipa.html'">Cunoaste Echipa</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html">
+        <svg width="16" height="16" viewBox="0 0 22 22" fill="none"><path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>
+        Med Life Dental
+      </a>
+      <p>Clinică stomatologică premium &mdash; 15 ani de excelență in îngrijirea zâmbetelor din Romania.</p>
+    </div>
+    <div class="footer-col"><h4>Tratamente</h4><ul><li><a href="tratamente.html">Implantologie</a></li><li><a href="tratamente.html">Ortodonție</a></li><li><a href="tratamente.html">Estetică Dentara</a></li><li><a href="tratamente.html">Endodonție</a></li><li><a href="tratamente.html">Chirurgie Orala</a></li></ul></div>
+    <div class="footer-col"><h4>Servicii</h4><ul><li><a href="servicii.html">Smile Design 3D</a></li><li><a href="servicii.html">Parodontologie</a></li><li><a href="servicii.html">Protetică</a></li><li><a href="servicii.html">Stomatologie Pediatrică</a></li><li><a href="servicii.html">Urgențe 24/7</a></li></ul></div>
+    <div class="footer-col"><h4>Clinică</h4><ul><li><a href="echipa.html">Echipa Medicală</a></li><li><a href="tehnologie.html">Tehnologie</a></li><li><a href="preturi.html">Prețuri</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Pacient</h4><ul><li><a href="contact.html">Programare Online</a></li><li><a href="preturi.html">Prețuri &amp; Pachete</a></li><li><a href="preturi.html">Finanțare Rate</a></li><li><a href="contact.html">Întrebări Frecvente</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <div class="footer-bottom-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Google Maps</a></div>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<button class="chat-trigger" id="chatTrigger" onclick="toggleChat()">
+  <div class="chat-pulse"></div><div class="chat-notif" id="chatNotif">1</div>
+  <svg id="chatIconOpen" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="8" width="14" height="10" rx="2" stroke="white" stroke-width="1.5"/><path d="M9 4h2a1 1 0 011 1v3H9V4z" stroke="white" stroke-width="1.5"/><path d="M13 4h2a1 1 0 011 1v3h-3V4z" stroke="white" stroke-width="1.5"/><circle cx="9.5" cy="12.5" r="1.5" fill="white"/><circle cx="14.5" cy="12.5" r="1.5" fill="white"/><path d="M9.5 15.5h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12v-1M21 12v-1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <svg id="chatIconClose" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-hdr"><div class="chat-hdr-info"><div class="chat-hdr-av">&#129302;</div><div><div class="chat-hdr-name">Med Life AI</div><div class="chat-hdr-status"><div class="chat-online-dot"></div>Online acum &bull; răspunde instant</div></div></div><button class="chat-close-btn" onclick="toggleChat()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="chat-scene"><spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer><div class="chat-scene-label">Asistent AI</div></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-qr" id="chatQR">REPLACED</div>
+  <div class="chat-input-row"><textarea class="chat-ta" id="chatTA" placeholder="Scrie un mesaj..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();chatSend()}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea><button class="chat-send-btn" onclick="chatSend()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

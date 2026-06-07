@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<title>Med Life Dental — Clinică Stomatologică Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.79/build/spline-viewer.js"></script>
+
+<style>
+/* ── HERO GLOBE LAYOUT (index.html) ─────────────────────────── */
+.hero.hero-globe-layout{
+  flex-direction:row;
+  text-align:left;
+  align-items:center;
+  justify-content:space-between;
+  padding:100px 80px 80px;
+  gap:48px;
+}
+.hero-text-col{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.hero-text-col .hero-badge{align-self:flex-start}
+.hero-text-col .hero-sub{max-width:520px;margin-left:0;margin-right:0}
+.hero-text-col .hero-ctas{justify-content:flex-start}
+.hero-globe-col{
+  flex:0 0 460px;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-globe-wrap{
+  position:relative;
+  width:460px;height:460px;
+}
+#cobeGlobe{
+  display:block;width:100%;height:100%;
+  border-radius:50%;touch-action:none;
+  cursor:grab;opacity:0;
+  transition:opacity 1.4s ease;
+}
+#cobeGlobe.hg-grabbing{cursor:grabbing}
+#arcsCanvas{
+  position:absolute;inset:0;
+  border-radius:50%;
+  pointer-events:none;
+}
+.hg-glow{
+  position:absolute;inset:-50px;
+  background:radial-gradient(circle at center,rgba(94,106,210,0.2) 0%,transparent 65%);
+  pointer-events:none;border-radius:50%;
+  animation:hgPulse 4s ease-in-out infinite;
+}
+@keyframes hgPulse{
+  0%,100%{opacity:.7}50%{opacity:1}
+}
+.hg-stat{
+  position:absolute;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(9,9,11,0.88);
+  backdrop-filter:blur(16px) saturate(130%);
+  -webkit-backdrop-filter:blur(16px) saturate(130%);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:11px;padding:10px 14px;
+  pointer-events:none;user-select:none;
+  animation:hgStatIn .8s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes hgStatIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hg-stat-1{top:28px;left:0;animation-delay:.6s}
+.hg-stat-2{bottom:38px;right:0;animation-delay:.9s}
+.hg-stat-ico{
+  width:34px;height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.hg-stat-val{font-size:15px;font-weight:700;letter-spacing:-.02em;color:#fff;line-height:1.2}
+.hg-stat-lbl{font-size:10px;color:rgba(255,255,255,0.38);margin-top:1px}
+
+@media(max-width:1100px){
+  .hero.hero-globe-layout{padding:100px 48px 60px;gap:36px}
+  .hero-globe-col{flex:0 0 380px}
+  .hero-globe-wrap{width:380px;height:380px}
+}
+@media(max-width:768px){
+  .hero.hero-globe-layout{
+    flex-direction:column;
+    text-align:center;
+    align-items:center;
+    padding:110px 24px 60px;
+    gap:40px;
+  }
+  .hero-text-col{align-items:center}
+  .hero-text-col .hero-ctas{justify-content:center}
+  .hero-text-col .hero-sub{max-width:100%;text-align:center}
+  .hero-globe-col{flex:none;width:100%}
+  .hero-globe-wrap{width:280px;height:280px;margin:0 auto}
+  .hg-stat-1{top:14px;left:4px}
+  .hg-stat-2{bottom:18px;right:4px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="mesh-bg"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+    </svg>
+    Med Life Dental
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="servicii.html">Servicii</a></li>
+    <li><a href="tratamente.html">Tratamente</a></li>
+    <li><a href="tehnologie.html">Tehnologie</a></li>
+    <li><a href="echipa.html">Echipa</a></li>
+    <li><a href="preturi.html">Prețuri</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="btn-ghost" onclick="location.href='galerie.html'">Galerie</button>
+    <button class="btn-primary" onclick="location.href='contact.html'">Programare Online</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero hero-globe-layout">
+
+  <!-- Left: text content -->
+  <div class="hero-text-col">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Med Life Dental &mdash; 15 Ani de Excelență Stomatologică
+    </div>
+
+    <h1><span>Zâmbetul tau,<br>arta noastra.</span></h1>
+
+    <p class="hero-sub">
+      Clinică Med Life Dental combina tehnologia de ultima generație cu expertiza medicilor nostri pentru a crea zâmbete care dureaza o viață. De la implantologie avansată la Smile Design digital, suntem alături de tine la fiecare pas al transformării.
+    </p>
+
+    <div class="hero-ctas">
+      <button class="btn-hero-primary">Programează Consultația</button>
+      <button class="btn-hero-ghost">Descoperă Tratamentele</button>
+    </div>
+  </div>
+
+  <!-- Right: interactive globe -->
+  <div class="hero-globe-col">
+    <div class="hero-globe-wrap">
+      <div class="hg-glow"></div>
+      <canvas id="cobeGlobe"></canvas>
+      <canvas id="arcsCanvas"></canvas>
+
+      <!-- Floating stat 1 -->
+      <div class="hg-stat hg-stat-1">
+        <div class="hg-stat-ico" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <div>
+          <div class="hg-stat-val">20.000+</div>
+          <div class="hg-stat-lbl">Pacienți tratați</div>
+        </div>
+      </div>
+
+      <!-- Floating stat 2 -->
+      <div class="hg-stat hg-stat-2">
+        <div class="hg-stat-ico" style="background:rgba(63,207,142,0.12)">&#9733;</div>
+        <div>
+          <div class="hg-stat-val" style="color:#3FCF8E">4.9 &#9733;</div>
+          <div class="hg-stat-lbl">2.400+ recenzii</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SECTION 1: TRATAMENTE -->
+<section>
+  <div class="container">
+    <div style="margin-bottom:64px">
+      <div class="section-label">Tratamente</div>
+      <h2 class="section-title">Excelență in fiecare tratament</h2>
+      <p class="section-sub">De la o simplă consultație la transformări complete ale zâmbetului, oferim îngrijire stomatologică de cel mai înalt nivel.</p>
+    </div>
+
+    <div class="feature-split">
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-badge">Implantologie Avansată</div>
+          <h3>Implanturi cu rată de succes 98.7%</h3>
+          <p>Folosim implanturi premium Straumann si Nobel Biocare. Proceduri All-on-4 si All-on-6 disponibile &mdash; restaurare completă a arcadei într-o singură zi, sub anestezie totală confortabilă.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge green">Nou</div>
+          <h3>Smile Design Digital 3D</h3>
+          <p>Vizualizeaza-ti noul zâmbet înainte de orice tratament. Simulam rezultatul final cu precizie milimetrica folosind software DSD si scanner intraoral 3D de ultima generație.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge">Ortodonție Invizibilă</div>
+          <h3>Alinere Invisalign &amp; aparate estetice</h3>
+          <p>Tratamente ortodontice discrete, confortabile si eficiente. Rezultate vizibile de la prima luna, fără sacrificii estetice pe durată întregului tratament.</p>
+        </div>
+      </div>
+
+      <!-- Mock: plan de tratament -->
+      <div class="mock-wrap">
+        <div class="mock-topbar">
+          <div class="mock-dot r"></div>
+          <div class="mock-dot y"></div>
+          <div class="mock-dot g"></div>
+          <span class="mock-title">Plan Tratament &mdash; Pacient #2847</span>
+        </div>
+        <div class="mock-body">
+          <div class="roadmap">
+            <div class="roadmap-row">
+              <div class="mock-avatar" style="background:#5E6AD2;font-size:10px">1</div>
+              <span style="font-size:12px;flex:1">Consultație &amp; Radiografie CBCT 3D</span>
+              <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:100%"></div></div>
+              <span class="roadmap-label" style="color:#3FCF8E">Finalizat</span>
+            </div>
+            <div class="roadmap-row">
+              <div class="mock-avatar" style="background:#3FCF8E;font-size:10px">2</div>
+              <span style="font-size:12px;flex:1">Smile Design Digital &amp; Simulare 3D</span>
+              <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:100%;background:#3FCF8E"></div></div>
+              <span class="roadmap-label" style="color:#3FCF8E">Finalizat</span>
+            </div>
+            <div class="roadmap-row">
+              <div class="mock-avatar" style="background:#F97316;font-size:10px">3</div>
+              <span style="font-size:12px;flex:1">Pregătire os &mdash; Grefare sinusala</span>
+              <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:100%;background:#F97316"></div></div>
+              <span class="roadmap-label" style="color:#3FCF8E">Finalizat</span>
+            </div>
+            <div class="roadmap-row">
+              <div class="mock-avatar" style="background:#8B5CF6;font-size:10px">4</div>
+              <span style="font-size:12px;flex:1">Inserare implanturi Straumann</span>
+              <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:75%;background:#8B5CF6"></div></div>
+              <span class="roadmap-label">In curs</span>
+            </div>
+            <div class="roadmap-row">
+              <div class="mock-avatar" style="background:#EC4899;font-size:10px">5</div>
+              <span style="font-size:12px;flex:1">Montare coroane ceramice CAD/CAM</span>
+              <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:0%;background:#EC4899"></div></div>
+              <span class="roadmap-label">Planificât</span>
+            </div>
+            <div class="roadmap-row">
+              <div class="mock-avatar" style="background:#FEBC2E;font-size:10px;color:#000">6</div>
+              <span style="font-size:12px;flex:1">Control final &amp; Fotografie caz</span>
+              <div class="roadmap-bar-wrap"><div class="roadmap-bar" style="width:0%;background:#FEBC2E"></div></div>
+              <span class="roadmap-label">Planificât</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE CARDS ROW 1 -->
+<section style="padding-top:0">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-tag tag-new">Premium</div>
+        <div class="feature-card-icon" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <h3>Implantologie</h3>
+        <p>Implanturi Straumann &amp; Nobel Biocare cu garanție pe viață. Rată de succes 98.7% confirmata in 15 ani de practica.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(63,207,142,0.12)">&#10024;</div>
+        <h3>Estetică Dentara</h3>
+        <p>Fațete din ceramica, coroane integral ceramice, albire profesionala cu laser &mdash; rezultate spectaculoase in 2 ședințe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-tag tag-new">Nou</div>
+        <div class="feature-card-icon" style="background:rgba(249,115,22,0.12)">&#128247;</div>
+        <h3>Smile Design 3D</h3>
+        <p>Proiectam zâmbetul ideal digital înainte de orice intervenție. Vezi rezultatul final înainte sa inceapa tratamentul.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(139,92,246,0.12)">&#128200;</div>
+        <h3>Ortodonție</h3>
+        <p>Aparate metalice, ceramice, linguale si alinere Invisalign. Tratamente pentru copii de la 7 ani si adulti de orice vârstă.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(236,72,153,0.12)">&#128100;</div>
+        <h3>Stomatologie Pediatrică</h3>
+        <p>Cabinete special amenajate pentru copii, medici cu specializare pediatrică si atmosfera prietenoasă fără frică de dentist.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-tag tag-new">24/7</div>
+        <div class="feature-card-icon" style="background:rgba(254,188,46,0.12)">&#128680;</div>
+        <h3>Urgențe Dentare</h3>
+        <p>Linie directa pentru urgențe disponibila non-stop. Răspuns in maxim 30 minute, cabinet de urgență dedicât.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 1 -->
+<section class="quote-section">
+  <div class="quote-wrap">
+    <div class="quote-logo">
+      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#5E6AD2,#8B5CF6)">A</div>
+      Andreea M., 34 ani &mdash; Pacient
+    </div>
+    <blockquote>
+      Am venit cu teama si am plecat cu cel mai frumos zâmbet din viață mea. Echipa Med Life m-a ghidat pas cu pas prin întregul tratament de implanturi, iar rezultatul a depășit orice așteptare. In sfârșit râd cu gură până la urechi.
+    </blockquote>
+    <p class="quote-author">Tratament: Implanturi All-on-4 + Fațete ceramice &mdash; durată 4 luni</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 2: REZULTATE & STATISTICI -->
+<section>
+  <div class="container">
+    <div style="margin-bottom:64px">
+      <div class="section-label">Rezultate</div>
+      <h2 class="section-title">Cifre care vorbesc de la sine</h2>
+      <p class="section-sub">15 ani de excelență stomatologică concentrati in date concrete. Fiecare numarul reprezinta un pacient mulțumit.</p>
+    </div>
+
+    <div class="feature-split reverse">
+      <!-- Mock: statistici clinică -->
+      <div class="mock-wrap">
+        <div class="mock-topbar">
+          <div class="mock-dot r"></div>
+          <div class="mock-dot y"></div>
+          <div class="mock-dot g"></div>
+          <span class="mock-title">Dashboard Clinică &mdash; Iunie 2024</span>
+        </div>
+        <div class="mock-body">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+            <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px">
+              <div style="font-size:18px;font-weight:700;letter-spacing:-0.03em">487</div>
+              <div style="font-size:10px;color:var(--text3)">Consultații / luna</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px">
+              <div style="font-size:18px;font-weight:700;letter-spacing:-0.03em;color:#3FCF8E">+22%</div>
+              <div style="font-size:10px;color:var(--text3)">vs. luna trecuta</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px">
+              <div style="font-size:18px;font-weight:700;letter-spacing:-0.03em">4.9 &#9733;</div>
+              <div style="font-size:10px;color:var(--text3)">Rating mediu</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;padding:12px">
+            <div style="font-size:10px;color:var(--text3);margin-bottom:10px">Programari pe zi &mdash; Iunie 2024</div>
+            <div class="chart-bars" style="height:80px">
+              <div class="chart-bar" style="height:45%;background:rgba(94,106,210,0.4)"></div>
+              <div class="chart-bar" style="height:70%;background:rgba(94,106,210,0.5)"></div>
+              <div class="chart-bar" style="height:58%;background:rgba(94,106,210,0.4)"></div>
+              <div class="chart-bar" style="height:85%;background:rgba(94,106,210,0.6)"></div>
+              <div class="chart-bar" style="height:72%;background:rgba(94,106,210,0.5)"></div>
+              <div class="chart-bar" style="height:92%;background:var(--accent)"></div>
+              <div class="chart-bar" style="height:78%;background:rgba(94,106,210,0.6)"></div>
+              <div class="chart-bar" style="height:88%;background:rgba(94,106,210,0.65)"></div>
+              <div class="chart-bar" style="height:62%;background:rgba(94,106,210,0.45)"></div>
+              <div class="chart-bar" style="height:95%;background:var(--accent)"></div>
+              <div class="chart-bar" style="height:80%;background:rgba(94,106,210,0.6)"></div>
+              <div class="chart-bar" style="height:90%;background:rgba(94,106,210,0.65)"></div>
+              <div class="chart-bar" style="height:75%;background:rgba(94,106,210,0.55)"></div>
+              <div class="chart-bar" style="height:55%;background:rgba(94,106,210,0.4)"></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+            <div style="background:rgba(63,207,142,0.06);border:1px solid rgba(63,207,142,0.15);border-radius:6px;padding:10px 12px">
+              <div style="font-size:13px;font-weight:600;color:#3FCF8E">98.7%</div>
+              <div style="font-size:10px;color:var(--text3)">Rată succes implanturi</div>
+            </div>
+            <div style="background:rgba(94,106,210,0.06);border:1px solid rgba(94,106,210,0.2);border-radius:6px;padding:10px 12px">
+              <div style="font-size:13px;font-weight:600;color:#5E6AD2">20.000+</div>
+              <div style="font-size:10px;color:var(--text3)">Pacienți tratați total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-badge green">Realizari</div>
+          <h3>20.000+ pacienți tratați in 15 ani</h3>
+          <p>De la primul cabinet deschis in 2009, am crescut continuu. Astăzi tratăm peste 480 de pacienți lunar si avem o listă de așteptare de 3 săptămâni.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge">Implantologie</div>
+          <h3>5.000+ implanturi plașate cu succes</h3>
+          <p>Suntem lider regional in implantologie. 98.7% rată de succes, confirmat clinic, cu urmarire pe 10 ani a cazurilor finalizate.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge orange">Recunoastere</div>
+          <h3>4.9 stele din 2.400+ recenzii</h3>
+          <p>Cel mai bine cotat cabinet stomatologic din regiune pe Google, cu premiul "Best Dental Clinic Romania" acordat in 2022 si 2023.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 2 -->
+<section class="quote-section">
+  <div class="quote-wrap">
+    <div class="quote-logo">
+      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#F97316,#FEBC2E)">M</div>
+      Mihai D., 52 ani &mdash; Pacient
+    </div>
+    <blockquote>
+      După 20 de ani in care am evitat dentistul din frică, am ales Med Life. Au avut rabdare cu mine, au explicât fiecare pas si acum am un zâmbet complet reconstituit. Nu mi-a parut rau nicio secundă.
+    </blockquote>
+    <p class="quote-author">Tratament: Reconstrucție completă &mdash; 12 implanturi + proteza fixa &mdash; durată 8 luni</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 3: ECHIPA -->
+<section>
+  <div class="container">
+    <div style="margin-bottom:64px">
+      <div class="section-label">Echipa</div>
+      <h2 class="section-title">Specialiști dedicați întregii familii</h2>
+      <p class="section-sub">12 medici specialiști cu pregătire internațională, fiecare expert in domeniul sau. O echipa completă sub un singur acoperis.</p>
+    </div>
+
+    <div class="feature-split">
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-badge">Specialiști Seniori</div>
+          <h3>Medici cu formare internațională</h3>
+          <p>Echipa noastra include absolvenți ai universitatilor din Viena, Paris si Milano, cu specializari in implantologie, chirurgie orala si ortodonție avansată.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge green">Pediatrie</div>
+          <h3>Cabinet dedicât copiilor</h3>
+          <p>Medici cu superspecializare in stomatologie pediatrică. Spatiu amenajat special pentru cei mici &mdash; fără frică, fără traume, cu rezultate excelente.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge">Asigurări</div>
+          <h3>Decontare directa &mdash; 30+ asigurători</h3>
+          <p>Parteneri oficiali cu majoritatea caselor de asigurare din Romania. Decontezi direct la recepție, fără documente suplimentare.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-badge orange">Non-stop</div>
+          <h3>Urgențe dentare 24 ore din 24</h3>
+          <p>Linie de urgență activa 24/7. Durere de dinte la 3 noaptea? Suntem disponibili &mdash; cabinet de urgență separat, acces imediat.</p>
+        </div>
+      </div>
+
+      <!-- Mock: echipa medici -->
+      <div class="mock-wrap">
+        <div class="mock-topbar">
+          <div class="mock-dot r"></div>
+          <div class="mock-dot y"></div>
+          <div class="mock-dot g"></div>
+          <span class="mock-title">Echipa Medicală &mdash; Med Life Dental</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-list">
+            <div class="mock-list-row">
+              <div class="mock-avatar" style="background:#5E6AD2">DR</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:500">Dr. Râdu Constantin</div>
+                <div style="font-size:10px;color:var(--text3)">Implantolog Senior &mdash; Fondator</div>
+              </div>
+              <div class="mock-status" style="background:#3FCF8E"></div>
+              <span class="mock-priority">15 ani exp.</span>
+            </div>
+            <div class="mock-list-row">
+              <div class="mock-avatar" style="background:#3FCF8E">AM</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:500">Dr. Ana Munteanu</div>
+                <div style="font-size:10px;color:var(--text3)">Ortodontist &mdash; Invisalign Provider</div>
+              </div>
+              <div class="mock-status" style="background:#3FCF8E"></div>
+              <span class="mock-priority">11 ani exp.</span>
+            </div>
+            <div class="mock-list-row">
+              <div class="mock-avatar" style="background:#F97316">IP</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:500">Dr. Ionut Popa</div>
+                <div style="font-size:10px;color:var(--text3)">Chirurg Oral &mdash; Specializare Viena</div>
+              </div>
+              <div class="mock-status" style="background:#3FCF8E"></div>
+              <span class="mock-priority">9 ani exp.</span>
+            </div>
+            <div class="mock-list-row">
+              <div class="mock-avatar" style="background:#8B5CF6">LT</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:500">Dr. Laura Toma</div>
+                <div style="font-size:10px;color:var(--text3)">Estetică Dentara &mdash; DSD Certified</div>
+              </div>
+              <div class="mock-status" style="background:#3FCF8E"></div>
+              <span class="mock-priority">8 ani exp.</span>
+            </div>
+            <div class="mock-list-row">
+              <div class="mock-avatar" style="background:#EC4899">SB</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:500">Dr. Sofia Barbu</div>
+                <div style="font-size:10px;color:var(--text3)">Stomatologie Pediatrică</div>
+              </div>
+              <div class="mock-status" style="background:#FEBC2E"></div>
+              <span class="mock-priority">6 ani exp.</span>
+            </div>
+            <div class="mock-list-row">
+              <div class="mock-avatar" style="background:#FEBC2E;color:#000">+7</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:500">+7 medici specialiști</div>
+                <div style="font-size:10px;color:var(--text3)">Endodonție, Parodontologie, Protetică</div>
+              </div>
+              <div class="mock-status" style="background:rgba(255,255,255,0.2)"></div>
+              <span class="mock-priority">Vezi toți</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 3 -->
+<section class="quote-section">
+  <div class="quote-wrap">
+    <div class="quote-logo">
+      <div class="quote-logo-dot" style="background:linear-gradient(135deg,#3FCF8E,#00B4D8)">E</div>
+      Elena R., 29 ani &mdash; Pacient
+    </div>
+    <blockquote>
+      Am adus întreagă familie la Med Life &mdash; de la copilul meu de 8 ani până la bunicii de 70+. Fiecare a primit îngrijire personalizata, iar copilul nu mai plange când mergem la dentist. Asta spune totul.
+    </blockquote>
+    <p class="quote-author">Tratament familie: Ortodonție copil + Implanturi + Fațete ceramice &mdash; pacient fidel 6 ani</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SECTION 4: TEHNOLOGIE -->
+<section>
+  <div class="container">
+    <div class="sync-wrap">
+      <div class="sync-header">
+        <div class="sync-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+            <path d="M10 4 L10 10 L14 12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="sync-badge">Sustinut de</span>
+        <span style="font-size:15px;font-weight:600">Digital Dental Technology</span>
+      </div>
+
+      <h2 class="sync-title">Precizia si sigurănta sunt la baza fiecarui tratament.</h2>
+      <p class="sync-sub">Inveștim constant in echipamentele de ultima generație pentru ca fiecare diagnostic sa fie perfect, fiecare intervenție sa fie precisa si fiecare pacient sa se simta in sigurănta deplina.</p>
+
+      <div class="sync-stats">
+        <div class="sync-stat">
+          <div class="sync-stat-num" style="background:linear-gradient(135deg,#fff,rgba(255,255,255,0.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent">0.2mm</div>
+          <div class="sync-stat-label">Precizie scanner CBCT 3D</div>
+        </div>
+        <div class="sync-stat">
+          <div class="sync-stat-num" style="background:linear-gradient(135deg,#3FCF8E,#00B4D8);-webkit-background-clip:text;-webkit-text-fill-color:transparent">3D</div>
+          <div class="sync-stat-label">Planificare implant ghidata digital</div>
+        </div>
+        <div class="sync-stat">
+          <div class="sync-stat-num" style="background:linear-gradient(135deg,#5E6AD2,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">99.8%</div>
+          <div class="sync-stat-label">Acuratețe diagnostice radiologice</div>
+        </div>
+      </div>
+
+      <div class="sync-features">
+        <div class="sync-feature">
+          <div class="sync-feature-icon">&#128247;</div>
+          <div>
+            <h4>CBCT 3D Cone Beam</h4>
+            <p>Radiografie tridimensionala cu doză minima de râdiații. Diagnostic complet al osului si nervilor înainte de orice intervenție.</p>
+          </div>
+        </div>
+        <div class="sync-feature">
+          <div class="sync-feature-icon">&#128270;</div>
+          <div>
+            <h4>Scanner Intraoral 3Shape</h4>
+            <p>Amprente digitale in 3 minute, fără silicon. Precizie superioara, confort maxim pentru pacient.</p>
+          </div>
+        </div>
+        <div class="sync-feature">
+          <div class="sync-feature-icon">&#9881;</div>
+          <div>
+            <h4>Freza CAD/CAM in-house</h4>
+            <p>Coroane, fațete si proteze fabricate in clinică in același timp. Lucrare definitivă într-o singură ședință.</p>
+          </div>
+        </div>
+        <div class="sync-feature">
+          <div class="sync-feature-icon">&#9889;</div>
+          <div>
+            <h4>Laser Dentar Fotona</h4>
+            <p>Tratamente fără bisturiu, fără sutură, cu vindecare accelerată. Chirurgie gingivală, albire si dezinfecție canale.</p>
+          </div>
+        </div>
+        <div class="sync-feature">
+          <div class="sync-feature-icon">&#128737;</div>
+          <div>
+            <h4>Sterilizare Clașa B</h4>
+            <p>Autoclav de clașa B cu ciclu vacuum. Sterilizare certificâtă 100% pentru fiecare instrument, fiecare ședință.</p>
+          </div>
+        </div>
+        <div class="sync-feature">
+          <div class="sync-feature-icon">&#128301;</div>
+          <div>
+            <h4>Râdiologie Digitală RVG</h4>
+            <p>Râdiografii dentare instant cu 90% mai putina râdiație decât radiografia conventionala pe film.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE GRID: TOATE SERVICIILE -->
+<section>
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label">Toate Serviciile</div>
+      <h2 style="font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px">
+        Stomatologie completă sub un singur acoperis
+      </h2>
+      <p style="font-size:15px;color:var(--text2);max-width:480px;margin:0 auto;line-height:1.65">
+        Nu mai cautati cabinete diferite pentru fiecare specialitate. La Med Life Dental gasiti totul într-un singur loc.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-tag tag-new">Specialitate</div>
+        <div class="feature-card-icon" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <h3>Implantologie</h3>
+        <p>Implanturi unitare, punti pe implanturi, All-on-4, All-on-6. Reconstructii complete ale arcadei in 1&ndash;2 zile.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(63,207,142,0.12)">&#128200;</div>
+        <h3>Ortodonție</h3>
+        <p>Invisalign, alinere personalizate, aparate ceramice si metalice pentru copii si adulti. Durată medie 12&ndash;18 luni.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-tag tag-new">Nou</div>
+        <div class="feature-card-icon" style="background:rgba(249,115,22,0.12)">&#10024;</div>
+        <h3>Smile Design</h3>
+        <p>Proiectare digitală completă a zâmbetului: fațete, coroane, conturare gingivală si albire profesionala combinate.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(139,92,246,0.12)">&#128293;</div>
+        <h3>Endodonție</h3>
+        <p>Tratament de canal cu rotative mecanice si apex locator. Salvam dintii considerati pierduti de alte cabinete.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(236,72,153,0.12)">&#129657;</div>
+        <h3>Parodontologie</h3>
+        <p>Tratament parodontiu, detartraj subgingival, chirurgie regenerativa. Salvam dantura afectata de boli ale gingiei.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-tag tag-new">Nou</div>
+        <div class="feature-card-icon" style="background:rgba(254,188,46,0.12)">&#9889;</div>
+        <h3>Chirurgie Laser</h3>
+        <p>Extractii, frenectomii, operculectomii si chirurgie gingivală cu laser Fotona &mdash; fără bisturiu, fără sutură.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(94,106,210,0.15)">&#128081;</div>
+        <h3>Protetică</h3>
+        <p>Coroane, punti si proteze mobilizabile fabricate in laboratorul propriu CAD/CAM. Lucrari definitive in 24 ore.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(63,207,142,0.12)">&#129529;</div>
+        <h3>Profilaxie & Igiena</h3>
+        <p>Detartraj, airflow, aplicare fluor si sigilarea santurilor la copii. Ședințe de profilaxie la 6 luni incluse in abonament.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="background:rgba(249,115,22,0.12)">&#128137;</div>
+        <h3>Sedare Conștienta</h3>
+        <p>Tratamente sub sedare intravenoasă sau inhalatorie cu protoxid de azot. Fără frică, fără stres, fără amintiri neplăcute.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1">
+    <h2>Gata pentru zâmbetul perfect?</h2>
+    <p>Prima consultație este gratuită. Vino, analizăm situația ta si iti propunem cel mai bun plan de tratament.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-primary">Programează Acum &mdash; Gratuit</button>
+      <button class="btn-hero-ghost">Sună: 0800 123 456</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/">
+        <svg width="16" height="16" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+        </svg>
+        Med Life Dental
+      </a>
+      <p>Clinică stomatologică premium &mdash; 15 ani de excelență in îngrijirea zâmbetelor din Romania.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Tratamente</h4>
+      <ul>
+        <li><a href="tratamente.html">Implantologie</a></li>
+        <li><a href="tratamente.html">Ortodonție</a></li>
+        <li><a href="tratamente.html">Estetică Dentara</a></li>
+        <li><a href="tratamente.html">Endodonție</a></li>
+        <li><a href="tratamente.html">Chirurgie Orala</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Servicii</h4>
+      <ul>
+        <li><a href="servicii.html">Smile Design 3D</a></li>
+        <li><a href="servicii.html">Parodontologie</a></li>
+        <li><a href="servicii.html">Protetică</a></li>
+        <li><a href="servicii.html">Stomatologie Pediatrică</a></li>
+        <li><a href="servicii.html">Urgențe 24/7</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Clinică</h4>
+      <ul>
+        <li><a href="echipa.html">Echipa Medicală</a></li>
+        <li><a href="tehnologie.html">Tehnologie</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="preturi.html">Prețuri</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Pacient</h4>
+      <ul>
+        <li><a href="contact.html">Programare Online</a></li>
+        <li><a href="preturi.html">Prețuri &amp; Pachete</a></li>
+        <li><a href="preturi.html">Asigurări Partenere</a></li>
+        <li><a href="preturi.html">Finanțare Rate</a></li>
+        <li><a href="contact.html">Întrebări Frecvente</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">Google Maps</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ CHAT WIDGET ═══ -->
+<button class="chat-trigger" id="chatTrigger" onclick="toggleChat()">
+  <div class="chat-pulse"></div>
+  <div class="chat-notif" id="chatNotif">1</div>
+  <svg id="chatIconOpen" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect x="5" y="8" width="14" height="10" rx="2" stroke="white" stroke-width="1.5"/>
+    <path d="M9 4h2a1 1 0 011 1v3H9V4z" stroke="white" stroke-width="1.5"/>
+    <path d="M13 4h2a1 1 0 011 1v3h-3V4z" stroke="white" stroke-width="1.5"/>
+    <circle cx="9.5" cy="12.5" r="1.5" fill="white"/>
+    <circle cx="14.5" cy="12.5" r="1.5" fill="white"/>
+    <path d="M9.5 15.5h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M3 12v-1M21 12v-1" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <svg id="chatIconClose" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none">
+    <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+
+  <!-- Header -->
+  <div class="chat-hdr">
+    <div class="chat-hdr-info">
+      <div class="chat-hdr-av">&#129302;</div>
+      <div>
+        <div class="chat-hdr-name">Med Life AI</div>
+        <div class="chat-hdr-status">
+          <div class="chat-online-dot"></div>
+          Online acum &bull; răspunde instant
+        </div>
+      </div>
+    </div>
+    <button class="chat-close-btn" onclick="toggleChat()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- 3D Robot Scene -->
+  <div class="chat-scene">
+    <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer>
+    <div class="chat-scene-label">Asistent AI</div>
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-msgs" id="chatMsgs"></div>
+
+  <!-- Quick reply chips -->
+  <div class="chat-qr" id="chatQR">
+    <button class="qr-btn" onclick="sendQR(this,'Vreau o programare')">&#128197; Programare</button>
+    <button class="qr-btn" onclick="sendQR(this,'Cât costa un implant?')">&#129463; Implant</button>
+    <button class="qr-btn" onclick="sendQR(this,'Spune-mi despre Invisalign')">&#128578; Invisalign</button>
+    <button class="qr-btn" onclick="sendQR(this,'Vreau sa-mi albesc dintii')">&#10024; Albire</button>
+    <button class="qr-btn" onclick="sendQR(this,'Am o urgență dentara')">&#128680; Urgență</button>
+    <button class="qr-btn" onclick="sendQR(this,'Ce prețuri aveți?')">&#128176; Prețuri</button>
+    <button class="qr-btn" onclick="sendQR(this,'Acceptați asigurări?')">&#128203; Asigurări</button>
+    <button class="qr-btn" onclick="sendQR(this,'Unde sunteți localizati?')">&#128205; Locâție</button>
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input-row">
+    <textarea class="chat-ta" id="chatTA" placeholder="Scrie un mesaj..." rows="1"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();chatSend()}"
+      oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"
+    ></textarea>
+    <button class="chat-send-btn" onclick="chatSend()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+        <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+<!-- ═══ COBE GLOBE + ARCE ═══ -->
+<script type="module">
+import createGlobe from 'https://cdn.jsdelivr.net/npm/cobe@0.6.3/+esm'
+
+;(function() {
+  var canvas    = document.getElementById('cobeGlobe')
+  var arcCanvas = document.getElementById('arcsCanvas')
+  if (!canvas) return
+
+  var phi          = 0.3
+  var currentPhi   = phi
+  var currentTheta = 0.25
+  var pointerDown  = false
+  var startX = 0, startY = 0
+  var dragPhi = 0, dragTheta = 0
+  var phiAccum = 0, thetaAccum = 0
+  var dpr = Math.min(window.devicePixelRatio || 1, 2)
+
+  var markers = [
+    {location:[44.43,26.10],size:0.08},
+    {location:[46.77,23.59],size:0.048},
+    {location:[47.16,27.58],size:0.042},
+    {location:[45.74,21.24],size:0.042},
+    {location:[48.21,16.37],size:0.034},
+    {location:[52.52,13.41],size:0.03},
+    {location:[48.85,2.35], size:0.03},
+    {location:[51.50,-0.12],size:0.03},
+    {location:[41.01,28.98],size:0.034},
+    {location:[50.08,14.43],size:0.03},
+    {location:[47.50,19.04],size:0.03},
+  ]
+
+  function initGlobe() {
+    var sz = canvas.offsetWidth
+    if (sz === 0) { requestAnimationFrame(initGlobe); return }
+
+    try {
+      createGlobe(canvas, {
+        devicePixelRatio: dpr,
+        width:  sz * dpr,
+        height: sz * dpr,
+        phi:    phi,
+        theta:  0.25,
+        dark:   1,
+        diffuse: 1.4,
+        mapSamples:    16000,
+        mapBrightness: 7,
+        baseColor:   [0.06, 0.06, 0.12],
+        markerColor: [0.37, 0.41, 0.82],
+        glowColor:   [0.2,  0.22, 0.50],
+        markers: markers,
+        onRender: function(state) {
+          if (!pointerDown) phi += 0.003
+          currentPhi   = phi + phiAccum + dragPhi
+          currentTheta = 0.25 + thetaAccum + dragTheta
+          state.phi    = currentPhi
+          state.theta  = currentTheta
+          state.width  = canvas.offsetWidth * dpr
+          state.height = canvas.offsetWidth * dpr
+        }
+      })
+      canvas.style.opacity = '1'
+    } catch(e) {
+      console.error('Cobe globe error:', e)
+    }
+
+    canvas.addEventListener('pointerdown', function(e) {
+      pointerDown = true
+      startX = e.clientX; startY = e.clientY
+      dragPhi = dragTheta = 0
+      canvas.classList.add('hg-grabbing')
+    })
+    window.addEventListener('pointermove', function(e) {
+      if (!pointerDown) return
+      dragPhi   = (e.clientX - startX) / 300
+      dragTheta = (e.clientY - startY) / 1000
+    }, {passive: true})
+    window.addEventListener('pointerup', function() {
+      if (pointerDown) {
+        phiAccum   += dragPhi
+        thetaAccum += dragTheta
+        dragPhi = dragTheta = 0
+      }
+      pointerDown = false
+      canvas.classList.remove('hg-grabbing')
+    }, {passive: true})
+  }
+
+  function toCart(lat, lng) {
+    var lr = lat * Math.PI / 180, lgr = lng * Math.PI / 180
+    return [
+      Math.cos(lr) * Math.sin(lgr),
+      Math.sin(lr),
+      Math.cos(lr) * Math.cos(lgr)
+    ]
+  }
+
+  function slerp(a, b, t) {
+    var dot = Math.max(-1, Math.min(1, a[0]*b[0] + a[1]*b[1] + a[2]*b[2]))
+    var angle = Math.acos(dot)
+    if (angle < 1e-6) return [a[0], a[1], a[2]]
+    var s = Math.sin(angle)
+    var wa = Math.sin((1-t)*angle) / s
+    var wb = Math.sin(t*angle) / s
+    return [wa*a[0]+wb*b[0], wa*a[1]+wb*b[1], wa*a[2]+wb*b[2]]
+  }
+
+  function projPt(p, phi, theta, cx, cy, R) {
+    var xr = p[0]*Math.cos(phi) - p[2]*Math.sin(phi)
+    var zr = p[0]*Math.sin(phi) + p[2]*Math.cos(phi)
+    var yr2 =  p[1]*Math.cos(theta) + zr*Math.sin(theta)
+    var zr2 = -p[1]*Math.sin(theta) + zr*Math.cos(theta)
+    return { x: cx + R*xr, y: cy - R*yr2, d: zr2 }
+  }
+
+  var actx   = arcCanvas ? arcCanvas.getContext('2d') : null
+  var lastSz = 0
+  var cdpr   = Math.min(window.devicePixelRatio || 1, 2)
+  var N_SEGS = 36
+
+  var RO = [44.43, 26.10]
+  var arcDefs = [
+    [41.90, 12.50],
+    [47.00, 28.86],
+    [55.75, 37.62],
+    [48.85,  2.35],
+    [52.52, 13.41],
+    [52.37,  4.90],
+  ]
+
+  var pRO    = toCart(RO[0], RO[1])
+  var pDests = arcDefs.map(function(d) { return toCart(d[0], d[1]) })
+
+  function renderArcs() {
+    if (!actx) { requestAnimationFrame(renderArcs); return }
+    var sz = arcCanvas.offsetWidth
+    if (sz <= 0) { requestAnimationFrame(renderArcs); return }
+    if (sz !== lastSz) {
+      arcCanvas.width  = sz * cdpr
+      arcCanvas.height = sz * cdpr
+      lastSz = sz
+    }
+    actx.clearRect(0, 0, arcCanvas.width, arcCanvas.height)
+    actx.save()
+    actx.scale(cdpr, cdpr)
+    var cx = sz / 2, cy = sz / 2, R = sz * 0.48
+
+    pDests.forEach(function(pDest) {
+      var pts = []
+      for (var i = 0; i <= N_SEGS; i++) {
+        var t  = i / N_SEGS
+        var gc = slerp(pRO, pDest, t)
+        var elev = 1 + 0.16 * Math.sin(t * Math.PI)
+        pts.push(projPt([gc[0]*elev, gc[1]*elev, gc[2]*elev], currentPhi, currentTheta, cx, cy, R))
+      }
+      actx.lineWidth = 1.1
+      actx.lineCap   = 'round'
+      for (var i = 1; i < pts.length; i++) {
+        var p0 = pts[i-1], p1 = pts[i]
+        if (p0.d <= 0 || p1.d <= 0) continue
+        var midT = (i - 0.5) / N_SEGS
+        var alpha = 0.55 * Math.sin(midT * Math.PI) * Math.min(1, (p0.d + p1.d) * 0.75)
+        if (alpha < 0.005) continue
+        actx.beginPath()
+        actx.moveTo(p0.x, p0.y)
+        actx.lineTo(p1.x, p1.y)
+        actx.strokeStyle = 'rgba(148,160,230,' + alpha.toFixed(3) + ')'
+        actx.stroke()
+      }
+      var pd = projPt(pDest, currentPhi, currentTheta, cx, cy, R)
+      if (pd.d > 0.08) {
+        var da = Math.min(1, pd.d * 1.8) * 0.6
+        actx.beginPath()
+        actx.arc(pd.x, pd.y, 1.8, 0, Math.PI * 2)
+        actx.fillStyle = 'rgba(148,160,230,' + da.toFixed(3) + ')'
+        actx.fill()
+      }
+    })
+    actx.restore()
+    requestAnimationFrame(renderArcs)
+  }
+
+  initGlobe()
+  renderArcs()
+})()
+</script>
+
+</body>
+</html>

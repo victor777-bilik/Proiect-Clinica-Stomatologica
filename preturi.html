@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, inițial-scale=1.0">
+<title>Prețuri — Med Life Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.79/build/spline-viewer.js"></script>
+<style>
+.nav-links a.active{color:var(--text)}
+.page-hero{
+  padding:165px 24px 80px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.page-hero h1{
+  font-size:clamp(38px,5.5vw,66px);font-weight:700;
+  letter-spacing:-0.04em;line-height:1.08;
+  max-width:700px;margin:0 auto 22px;
+}
+.page-hero h1 span{
+  background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.5));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.page-hero-sub{font-size:17px;color:var(--text2);max-width:560px;margin:0 auto;line-height:1.65}
+
+/* Principles */
+.principles-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin-bottom:72px;
+}
+.principle-card{
+  background:var(--bg2);padding:32px 28px;text-align:center;
+}
+.principle-icon{font-size:28px;margin-bottom:12px}
+.principle-title{font-size:16px;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em}
+.principle-desc{font-size:14px;color:var(--text2);line-height:1.65}
+.principle-highlight{
+  display:inline-block;font-size:20px;font-weight:700;color:var(--green);
+  margin-top:8px;
+}
+
+/* Price câtegories */
+.price-section{margin-bottom:48px}
+.price-cat-header{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:10px 10px 0 0;
+  border-bottom:none;
+}
+.price-cat-icon{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.price-cat-title{font-size:15px;font-weight:600}
+.price-cat-sub{font-size:12px;color:var(--text3);margin-left:auto}
+
+.price-table{
+  border:1px solid var(--border);border-radius:0 0 10px 10px;
+  overflow:hidden;
+}
+.price-row{
+  display:grid;grid-template-columns:1fr auto;
+  padding:13px 20px;
+  border-bottom:1px solid var(--border);
+  align-items:center;
+  transition:background .12s;
+}
+.price-row:last-child{border-bottom:none}
+.price-row:hover{background:var(--bg2)}
+.pr-name{font-size:14px;color:var(--text2)}
+.pr-name strong{color:var(--text);font-weight:500}
+.pr-name small{font-size:12px;color:var(--text3);display:block;margin-top:2px}
+.pr-price{
+  font-size:15px;font-weight:600;text-align:right;white-space:nowrap;
+}
+.pr-price.free{color:var(--green)}
+.pr-price.highlight{color:var(--accent)}
+
+/* Packages */
+.pkg-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin-top:56px;margin-bottom:72px;
+}
+.pkg-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  position:relative;transition:border-color .18s;
+}
+.pkg-card:hover{border-color:var(--border2)}
+.pkg-card.featured{border-color:var(--accent)}
+.pkg-badge{
+  position:absolute;top:14px;right:14px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 8px;border-radius:3px;
+  color:var(--accent);background:rgba(94,106,210,0.15);border:1px solid rgba(94,106,210,0.3);
+}
+.pkg-badge.best{color:var(--green);background:rgba(63,207,142,0.12);border-color:rgba(63,207,142,0.25)}
+.pkg-header{padding:28px 28px 20px}
+.pkg-icon{font-size:28px;margin-bottom:12px}
+.pkg-name{font-size:17px;font-weight:700;letter-spacing:-0.01em;margin-bottom:6px}
+.pkg-desc{font-size:13px;color:var(--text3);line-height:1.55;margin-bottom:16px}
+.pkg-price-num{
+  font-size:clamp(28px,4vw,38px);font-weight:700;letter-spacing:-0.04em;
+  background:linear-gradient(135deg,#fff,rgba(255,255,255,0.65));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.pkg-price-note{font-size:12px;color:var(--text3);margin-top:2px}
+.pkg-divider{height:1px;background:var(--border);margin:0}
+.pkg-includes{padding:20px 28px}
+.pkg-includes h4{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.pkg-item{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13px;color:var(--text2);margin-bottom:7px;line-height:1.4;
+}
+.pkg-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.pkg-cta{
+  margin:0 28px 24px;padding:10px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:7px;text-align:center;
+  font-size:13px;font-weight:500;color:var(--accent);
+  cursor:pointer;transition:background .15s,border-color .15s;
+}
+.pkg-cta:hover{background:rgba(94,106,210,0.1);border-color:rgba(94,106,210,0.3)}
+
+/* Financing */
+.fin-wrap{
+  background:linear-gradient(135deg,rgba(94,106,210,0.08),rgba(139,92,246,0.05));
+  border:1px solid rgba(94,106,210,0.2);border-radius:14px;
+  padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  align-items:center;
+}
+.fin-left h3{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;margin-bottom:12px}
+.fin-left p{font-size:15px;color:var(--text2);line-height:1.65}
+.fin-items{display:flex;flex-direction:column;gap:12px}
+.fin-item{
+  display:flex;align-items:center;gap:12px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;padding:14px 18px;
+}
+.fin-item-num{
+  font-size:20px;font-weight:700;color:var(--green);
+  min-width:44px;letter-spacing:-0.03em;
+}
+.fin-item-label{font-size:13px;color:var(--text2)}
+
+/* Insurance */
+.insur-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin-top:32px;
+}
+.insur-card{
+  background:var(--bg2);padding:18px 12px;
+  text-align:center;font-size:12px;font-weight:500;color:var(--text2);
+  transition:background .15s;
+}
+.insur-card:hover{background:var(--bg3)}
+
+/* ── Pricing Interactive Widget ── */
+.piw-wrap{margin:32px 0 72px}
+.piw-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),box-shadow 0.6s cubic-bezier(0.16,1,0.3,1);
+  will-change:transform;transform-style:preserve-3d;cursor:default;
+}
+.piw-grid{display:grid;grid-template-columns:2fr 4fr}
+.piw-left{border-right:1px solid var(--border);padding:26px;display:flex;flex-direction:column}
+.piw-left-inner{display:flex;flex-direction:column;justify-content:space-between;height:100%;gap:18px}
+.piw-plan-name{font-size:17px;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px;color:var(--text)}
+.piw-price-free{display:block;font-size:30px;font-weight:700;color:var(--accent);margin:6px 0 4px;letter-spacing:-0.03em}
+.piw-price-pro{display:block;font-size:30px;font-weight:700;color:var(--accent);margin:6px 0 4px;letter-spacing:-0.04em}
+.piw-cur{font-size:0.48em;color:var(--text3);font-weight:400;letter-spacing:0}
+.piw-plan-desc{font-size:12px;color:var(--text3);line-height:1.55}
+.piw-btn-outline{
+  display:block;text-align:center;padding:9px 14px;
+  border:1px solid var(--border2);border-radius:7px;
+  font-size:12px;font-weight:500;color:var(--text2);
+  text-decoration:none;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.piw-btn-outline:hover{background:rgba(94,106,210,0.08);border-color:rgba(94,106,210,0.4);color:var(--accent)}
+.piw-sep{height:1px;background:var(--border)}
+.piw-feat-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.piw-feat-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text2)}
+.piw-check{width:13px;height:13px;flex-shrink:0;stroke:var(--green);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.piw-check--ac{stroke:var(--accent)}
+.piw-right{padding:26px}
+.piw-right-top{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.piw-pro-info{display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.piw-chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.piw-chart-hdr{padding:9px 12px;border-bottom:1px solid var(--border)}
+.piw-chart-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.piw-chart-sub{font-size:10px;color:var(--text3)}
+.piw-chart-body{padding:10px 8px 6px}
+.piw-features{display:flex;flex-direction:column}
+.piw-feat-title{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:10px;letter-spacing:.03em;text-transform:uppercase}
+.piw-ctas{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.piw-btn-primary{
+  display:block;text-align:center;padding:9px 14px;
+  background:var(--accent);border:1px solid var(--accent);
+  border-radius:7px;font-size:12px;font-weight:600;
+  color:#fff;text-decoration:none;transition:opacity .15s;
+}
+.piw-btn-primary:hover{opacity:0.82}
+.piw-btn-outline2{
+  display:block;text-align:center;padding:9px 14px;
+  border:1px solid var(--border);border-radius:7px;
+  font-size:12px;font-weight:500;color:var(--text2);
+  text-decoration:none;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.piw-btn-outline2:hover{background:var(--bg2);border-color:var(--border2);color:var(--text)}
+
+@media(max-width:768px){
+  .principles-grid{grid-template-columns:1fr}
+  .pkg-grid{grid-template-columns:1fr}
+  .fin-wrap{grid-template-columns:1fr;gap:28px;padding:28px 24px}
+  .insur-grid{grid-template-columns:repeat(3,1fr)}
+  .piw-grid{grid-template-columns:1fr}
+  .piw-left{border-right:none;border-bottom:1px solid var(--border)}
+  .piw-right-top{grid-template-columns:1fr}
+  .piw-ctas{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<canvas id="mesh-bg"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+    </svg>
+    Med Life Dental
+  </a>
+  <ul class="nav-links">
+    <li><a href="servicii.html">Servicii</a></li>
+    <li><a href="tratamente.html">Tratamente</a></li>
+    <li><a href="tehnologie.html">Tehnologie</a></li>
+    <li><a href="echipa.html">Echipa</a></li>
+    <li><a href="preturi.html" class="active">Prețuri</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-ghost" onclick="location.href='galerie.html'">Galerie</button>
+    <button class="btn-primary" onclick="location.href='contact.html'">Programare Online</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Transparenta Totală &mdash; Fără Costuri Ascunse
+  </div>
+  <h1><span>Prețuri Corecte.<br>Calitate Fără Compromis.</span></h1>
+  <p class="page-hero-sub">
+    Credem ca un pacient informat este un pacient linistit. Publicam prețurile noastre deschis, fără surprize la recepție. Consultația inițială este gratuită si include devizul complet.
+  </p>
+</div>
+
+<!-- PRINCIPLES -->
+<section style="padding-top:0">
+  <div class="container">
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-icon">&#127881;</div>
+        <div class="principle-title">Consultație 100% Gratuită</div>
+        <div class="principle-desc">Prima consultație include examinare clinică, radiografie panoramica si planul de tratament complet, fără nicio obligatie.</div>
+        <div class="principle-highlight">0 lei</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">&#128176;</div>
+        <div class="principle-title">Deviz Scris Înainte de Start</div>
+        <div class="principle-desc">Primesti costul total in scris înainte de începerea oricarui tratament. Ce scrie pe hartie este prețul final — nu eștimare.</div>
+        <div class="principle-highlight">Garantat</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">&#128200;</div>
+        <div class="principle-title">Rate fără Dobândă</div>
+        <div class="principle-desc">Finanțare in rate 0% dobândă pentru tratamente de peste 1.000 lei, până la 48 de rate. Acces la cel mai bun tratament, fără griji financiare.</div>
+        <div class="principle-highlight">0% dobândă</div>
+      </div>
+    </div>
+
+    <!-- PRICE TABLES -->
+
+    <!-- Consultație & Diagnosticare -->
+    <div class="price-section">
+      <div class="price-cat-header">
+        <div class="price-cat-icon" style="background:rgba(94,106,210,0.15)">&#128269;</div>
+        <div>
+          <div class="price-cat-title">Consultație &amp; Diagnosticare</div>
+        </div>
+        <div class="price-cat-sub">Include la prima vizita</div>
+      </div>
+      <div class="price-table">
+        <div class="price-row"><div class="pr-name"><strong>Consultație inițială</strong><small>Examinare clinică, radiografie panoramica, plan tratament</small></div><div class="pr-price free">GRATUIT</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Consultație control / urgență</strong><small>Evaluare situatie existenta</small></div><div class="pr-price">100 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Radiografie dentara RVG</strong><small>Radiografie digitală intraorala</small></div><div class="pr-price">60 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Radiografie panoramica OPG</strong><small>Panoramica digitală întreagă arcade</small></div><div class="pr-price">120 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>CBCT 3D (Cone Beam)</strong><small>Camp vizual mic / mare</small></div><div class="pr-price">250 &mdash; 400 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Scanare intraorala 3D</strong><small>Amprentăre digitală arcada completă</small></div><div class="pr-price">150 lei</div></div>
+      </div>
+    </div>
+
+    <!-- Profilaxie & Igiena -->
+    <div class="price-section">
+      <div class="price-cat-header">
+        <div class="price-cat-icon" style="background:rgba(63,207,142,0.12)">&#129529;</div>
+        <div><div class="price-cat-title">Profilaxie &amp; Igiena</div></div>
+        <div class="price-cat-sub">Preventie si igiena profesionala</div>
+      </div>
+      <div class="price-table">
+        <div class="price-row"><div class="pr-name"><strong>Detartraj ultrasonic</strong><small>Toate suprafetele accesibile</small></div><div class="pr-price">150 &mdash; 220 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Periaj profesional Airflow</strong><small>EMS Airflow cu eritritol &mdash; eliminare pete si biofilm</small></div><div class="pr-price">200 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Detartraj + Airflow combo</strong></div><div class="pr-price highlight">320 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Aplicare fluor topical</strong><small>Copii si adulti cu risc carios crescut</small></div><div class="pr-price">80 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Sigilarea santurilor</strong><small>Per dinte — recomandăt copii 6&ndash;14 ani</small></div><div class="pr-price">100 lei/dinte</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Albire profesionala Zoom (1 ședință)</strong><small>Până la 8 nuante mai alb in 90 minute</small></div><div class="pr-price highlight">350 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Albire acasă (gutiere + gel)</strong><small>Kit complet Opalescence personalizat</small></div><div class="pr-price">450 lei</div></div>
+      </div>
+    </div>
+
+    <!-- Obturatii & Tratament Canal -->
+    <div class="price-section">
+      <div class="price-cat-header">
+        <div class="price-cat-icon" style="background:rgba(249,115,22,0.12)">&#128293;</div>
+        <div><div class="price-cat-title">Obturatii &amp; Endodonție</div></div>
+        <div class="price-cat-sub">Restaurari si tratament canal</div>
+      </div>
+      <div class="price-table">
+        <div class="price-row"><div class="pr-name"><strong>Obtiratie compozit (carie)</strong><small>Restaurare cu compozit fotopolimerizabil, per suprafață</small></div><div class="pr-price">150 &mdash; 280 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Inlay / Onlay ceramic (CAD/CAM)</strong><small>Lucrare ceramica in aceeași zi</small></div><div class="pr-price">600 &mdash; 900 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Tratament canal monorâdicular</strong><small>Dinti frontali &mdash; 1 canal</small></div><div class="pr-price">700 &mdash; 900 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Tratament canal plurirâdicular</strong><small>Premolari si molari &mdash; 2&ndash;4 canale</small></div><div class="pr-price">1.000 &mdash; 1.400 lei</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Retreatment canal (microscop)</strong><small>Cazuri complexe cu microscop Carl Zeiss</small></div><div class="pr-price">1.200 &mdash; 1.800 lei</div></div>
+      </div>
+    </div>
+
+    <!-- Implantologie -->
+    <div class="price-section">
+      <div class="price-cat-header">
+        <div class="price-cat-icon" style="background:rgba(94,106,210,0.15)">&#129463;</div>
+        <div><div class="price-cat-title">Implantologie</div></div>
+        <div class="price-cat-sub">Prețuri includ CBCT + chirurgie + vindecare</div>
+      </div>
+      <div class="price-table">
+        <div class="price-row"><div class="pr-name"><strong>Implant Straumann SLA Active</strong><small>Include: CBCT, chirurgie ghidata, implant, abutment provisional</small></div><div class="pr-price">1.200 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Implant Nobel Biocare Active</strong><small>Include: CBCT, chirurgie ghidata, implant, abutment provisional</small></div><div class="pr-price">1.400 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Coroana definitivă zirconiu</strong><small>CAD/CAM in-house, livrare in 24h</small></div><div class="pr-price">550 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Implant + coroana (complet)</strong><small>Straumann + coroana definitivă zirconiu</small></div><div class="pr-price highlight">1.650 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>All-on-4 (o arcada)</strong><small>4 implanturi + proteza fixa provizorie in aceeași zi + coroane definitive</small></div><div class="pr-price">4.500 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>All-on-6 (o arcada)</strong><small>6 implanturi + proteza fixa &mdash; recomandăta mandibula</small></div><div class="pr-price">5.500 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Grefare sinusala (lifting sinus)</strong></div><div class="pr-price">600 &mdash; 900 &euro;</div></div>
+      </div>
+    </div>
+
+    <!-- Ortodonție -->
+    <div class="price-section">
+      <div class="price-cat-header">
+        <div class="price-cat-icon" style="background:rgba(139,92,246,0.12)">&#128200;</div>
+        <div><div class="price-cat-title">Ortodonție</div></div>
+        <div class="price-cat-sub">Include consultații de monitorizare + retentori</div>
+      </div>
+      <div class="price-table">
+        <div class="price-row"><div class="pr-name"><strong>Invisalign Lite</strong><small>Până la 14 alinere &mdash; corecții usoare</small></div><div class="pr-price">2.500 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Invisalign Moderate</strong><small>Până la 26 alinere &mdash; corecții moderate</small></div><div class="pr-price">3.500 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Invisalign Comprehensive</strong><small>Alinere nelimitate &mdash; cazuri complexe</small></div><div class="pr-price">5.500 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Aparat metalic fix (o arcada)</strong><small>Include toate consultațiile de ajustare</small></div><div class="pr-price">1.500 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Aparat ceramic fix (o arcada)</strong><small>Brakete ceramic transparente</small></div><div class="pr-price">2.000 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Aparat lingual (o arcada)</strong><small>Brakete pe față interioara &mdash; invizibil complet</small></div><div class="pr-price">2.800 &euro;</div></div>
+        <div class="price-row"><div class="pr-name"><strong>Retentori (pereche)</strong><small>Gutiere de retentie după tratament ortodontic</small></div><div class="pr-price">500 lei</div></div>
+      </div>
+    </div>
+
+    <!-- PACKAGES -->
+    <div style="margin-top:64px;margin-bottom:16px">
+      <div class="section-label">Pachete Premium</div>
+      <h2 style="font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-0.03em;margin-bottom:10px">Transformări complete, la un preț special</h2>
+      <p style="font-size:15px;color:var(--text2);max-width:480px;margin:0">Pachete combinate cu economie de 15&ndash;25% față de serviciile separate.</p>
+    </div>
+    <div class="pkg-grid">
+
+      <div class="pkg-card">
+        <div class="pkg-badge">Popular</div>
+        <div class="pkg-header">
+          <div class="pkg-icon">&#10024;</div>
+          <div class="pkg-name">Premium Smile</div>
+          <div class="pkg-desc">Transformarea completă a zâmbetului cu Smile Design digital si fațete ceramice.</div>
+          <div class="pkg-price-num">5.800&nbsp;<span style="font-size:0.55em;-webkit-text-fill-color:rgba(255,255,255,0.6)">EUR</span></div>
+          <div class="pkg-price-note">Economie vs. servicii separate: ~1.200 EUR</div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-includes">
+          <h4>Include</h4>
+          <div class="pkg-item">Consultație + Smile Design Digital 3D</div>
+          <div class="pkg-item">8 fațete IPS e.max sau zirconiu</div>
+          <div class="pkg-item">Albire profesionala Zoom</div>
+          <div class="pkg-item">Ședință de profilaxie inclusa</div>
+          <div class="pkg-item">2 controale post-tratament</div>
+        </div>
+        <div class="pkg-cta" onclick="location.href='contact.html'">Solicita deviz personalizat &#8594;</div>
+      </div>
+
+      <div class="pkg-card featured">
+        <div class="pkg-badge best">Recomandăt</div>
+        <div class="pkg-header">
+          <div class="pkg-icon">&#129463;</div>
+          <div class="pkg-name">All-on-4 Complet</div>
+          <div class="pkg-desc">Reconstructia completă a ambelor arcade într-o singură zi. Solutia definitivă pentru edentatia totală.</div>
+          <div class="pkg-price-num">9.000&nbsp;<span style="font-size:0.55em;-webkit-text-fill-color:rgba(255,255,255,0.6)">EUR</span></div>
+          <div class="pkg-price-note">Ambele arcade &bull; Economie ~2.000 EUR</div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-includes">
+          <h4>Include</h4>
+          <div class="pkg-item">CBCT 3D si planificare digitală</div>
+          <div class="pkg-item">8 implanturi Straumann (4 per arcada)</div>
+          <div class="pkg-item">Proteza fixa provizorie in aceeași zi</div>
+          <div class="pkg-item">Coroane definitive zirconiu</div>
+          <div class="pkg-item">Anestezie totală + anestezist</div>
+          <div class="pkg-item">Urmarire 1 an inclusa</div>
+        </div>
+        <div class="pkg-cta" onclick="location.href='contact.html'">Solicita consultația gratuită &#8594;</div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-badge">Complet</div>
+        <div class="pkg-header">
+          <div class="pkg-icon">&#128200;</div>
+          <div class="pkg-name">Orthodontic Journey</div>
+          <div class="pkg-desc">Tratamentul complet cu Invisalign, de la prima consultație până la zâmbetul drept final.</div>
+          <div class="pkg-price-num">4.200&nbsp;<span style="font-size:0.55em;-webkit-text-fill-color:rgba(255,255,255,0.6)">EUR</span></div>
+          <div class="pkg-price-note">Invisalign Comprehensive &bull; Preț special</div>
+        </div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-includes">
+          <h4>Include</h4>
+          <div class="pkg-item">Consultație + scanare 3D inițială</div>
+          <div class="pkg-item">Invisalign Comprehensive (alinere nelimitate)</div>
+          <div class="pkg-item">Toate consultațiile de monitorizare</div>
+          <div class="pkg-item">Retentori (pereche gutiere)</div>
+          <div class="pkg-item">Albire Zoom post-tratament</div>
+        </div>
+        <div class="pkg-cta" onclick="location.href='contact.html'">Solicita deviz personalizat &#8594;</div>
+      </div>
+
+    </div><!-- /pkg-grid -->
+
+    <!-- PRICING INTERACTIVE WIDGET -->
+    <div class="piw-wrap">
+      <div class="piw-card" id="piwCard">
+        <div class="piw-grid">
+
+          <!-- Left: Consultație Gratuită -->
+          <div class="piw-left">
+            <div class="piw-left-inner">
+              <div>
+                <h3 class="piw-plan-name">Consultație</h3>
+                <span class="piw-price-free">Gratuit</span>
+                <p class="piw-plan-desc">Ideal pentru a cunoaște clinica și a înțelege opțiunile de tratament disponibile</p>
+              </div>
+              <a href="contact.html" class="piw-btn-outline">Rezervă Acum</a>
+              <div class="piw-sep"></div>
+              <ul class="piw-feat-list">
+                <li class="piw-feat-item">
+                  <svg class="piw-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Examinare clinică completă
+                </li>
+                <li class="piw-feat-item">
+                  <svg class="piw-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Radiografie panoramică digitală
+                </li>
+                <li class="piw-feat-item">
+                  <svg class="piw-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Plan de tratament scris gratuit
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right: Premium Smile + Chart + Features -->
+          <div class="piw-right">
+            <div class="piw-right-top">
+
+              <!-- Package info + chart -->
+              <div class="piw-pro-info">
+                <div>
+                  <h3 class="piw-plan-name">Pachet Premium Smile</h3>
+                  <span class="piw-price-pro">5.800 <span class="piw-cur">EUR</span></span>
+                  <p class="piw-plan-desc">Ideal pentru transformarea completă și definitivă a zâmbetului tău</p>
+                </div>
+                <div class="piw-chart-card">
+                  <div class="piw-chart-hdr">
+                    <div class="piw-chart-title">Popularitate Pachet</div>
+                    <div class="piw-chart-sub">Tendința lunară de interes a pacienților</div>
+                  </div>
+                  <div class="piw-chart-body">
+                    <svg id="piwChartSvg" viewBox="0 0 360 80" width="100%" style="display:block;cursor:crosshair">
+                      <defs>
+                        <linearGradient id="piwChartGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#5E6AD2" stop-opacity="0.32"/>
+                          <stop offset="100%" stop-color="#5E6AD2" stop-opacity="0"/>
+                        </linearGradient>
+                        <filter id="piwDotGlowF" x="-100%" y="-100%" width="300%" height="300%">
+                          <feGaussianBlur stdDeviation="3" result="blur"/>
+                          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        </filter>
+                      </defs>
+                      <!-- Grid lines -->
+                      <line x1="0" y1="16" x2="360" y2="16" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                      <line x1="0" y1="32" x2="360" y2="32" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                      <line x1="0" y1="48" x2="360" y2="48" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                      <!-- Fill area -->
+                      <path d="M 0,65 C 16,65 16,55 33,55 C 49,55 49,60 65,60 C 82,60 82,50 98,50 C 115,50 115,44 131,44 C 148,44 148,35 164,35 C 180,35 180,39 196,39 C 213,39 213,32 229,32 C 246,32 246,29 262,29 C 278,29 278,20 295,20 C 311,20 311,15 327,15 C 344,15 344,2 360,2 L 360,65 Z" fill="url(#piwChartGrad)"/>
+                      <!-- Line -->
+                      <path d="M 0,65 C 16,65 16,55 33,55 C 49,55 49,60 65,60 C 82,60 82,50 98,50 C 115,50 115,44 131,44 C 148,44 148,35 164,35 C 180,35 180,39 196,39 C 213,39 213,32 229,32 C 246,32 246,29 262,29 C 278,29 278,20 295,20 C 311,20 311,15 327,15 C 344,15 344,2 360,2" fill="none" stroke="#5E6AD2" stroke-width="2" stroke-linecap="round"/>
+                      <!-- Transparent hit area for mouse events -->
+                      <rect x="0" y="0" width="360" height="65" fill="transparent"/>
+                      <!-- Interactive cursor line -->
+                      <line id="piwCursorLine" x1="0" y1="0" x2="0" y2="65" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="3,2" visibility="hidden"/>
+                      <!-- Dot glow halo -->
+                      <circle id="piwDotHalo" cx="0" cy="0" r="9" fill="rgba(94,106,210,0.18)" visibility="hidden"/>
+                      <!-- Dot on curve -->
+                      <circle id="piwDot" cx="0" cy="0" r="3.5" fill="#5E6AD2" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" filter="url(#piwDotGlowF)" visibility="hidden"/>
+                      <!-- Tooltip -->
+                      <g id="piwTip" visibility="hidden">
+                        <rect id="piwTipBg" rx="5" ry="5" fill="#0c0c1c" stroke="rgba(94,106,210,0.5)" stroke-width="1"/>
+                        <text id="piwTipMonth" font-size="9" fill="rgba(255,255,255,0.45)" font-family="Inter,sans-serif"/>
+                        <text id="piwTipVal" font-size="11" font-weight="600" fill="#ffffff" font-family="Inter,sans-serif"/>
+                      </g>
+                      <!-- Month labels -->
+                      <text x="1" y="77" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif">Ian</text>
+                      <text x="57" y="77" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif">Mar</text>
+                      <text x="127" y="77" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif">Iun</text>
+                      <text x="194" y="77" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif">Aug</text>
+                      <text x="257" y="77" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif">Oct</text>
+                      <text x="324" y="77" font-size="9" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif">Dec</text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Features list -->
+              <div class="piw-features">
+                <div class="piw-feat-title">Tot ce include Consultația, plus:</div>
+                <ul class="piw-feat-list">
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Smile Design Digital 3D</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>8 fațete IPS e.max sau zirconiu</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Albire profesională Zoom inclusă</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Ședință de profilaxie inclusă</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>2 controale post-tratament incluse</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Finanțare 0% dobândă disponibilă</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Garanție 5 ani pe lucrare</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Economie ~1.200 EUR față de separat</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Prioritate programări urgente</li>
+                  <li class="piw-feat-item"><svg class="piw-check piw-check--ac" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Raport detaliat de tratament inclus</li>
+                </ul>
+                <div class="piw-ctas">
+                  <a href="contact.html" class="piw-btn-primary">Solicită Deviz</a>
+                  <a href="contact.html" class="piw-btn-outline2">Consultație Gratuită</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- /PRICING INTERACTIVE WIDGET -->
+
+    <!-- FINANCING -->
+    <div class="fin-wrap">
+      <div class="fin-left">
+        <div class="section-label">Finanțare</div>
+        <h3>Rate fără dobândă. Tratamentul cel mai bun, acum.</h3>
+        <p style="margin-top:12px">Știm ca un tratament premium reprezinta o investiție. De aceea am creat optiuni de finanțare flexibile, fără nicio dobândă, accesibil la orice tratament de peste 1.000 lei.</p>
+        <div style="margin-top:20px;font-size:14px;color:var(--text3)">Finanțare oferita in parteneriat cu Aplica rapid la recepție &mdash; aprobare in 30 de minute.</div>
+      </div>
+      <div class="fin-items">
+        <div class="fin-item">
+          <div class="fin-item-num">0%</div>
+          <div class="fin-item-label">Dobândă pe toată durată finanțării</div>
+        </div>
+        <div class="fin-item">
+          <div class="fin-item-num">48</div>
+          <div class="fin-item-label">Rate maxime disponibile</div>
+        </div>
+        <div class="fin-item">
+          <div class="fin-item-num">30'</div>
+          <div class="fin-item-label">Timp de aprobare la recepție</div>
+        </div>
+        <div class="fin-item">
+          <div class="fin-item-num">1K</div>
+          <div class="fin-item-label">Suma minima eligibila (1.000 lei)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSURANCE -->
+    <div style="margin-top:64px;text-align:center">
+      <div class="section-label">Asigurări Partenere</div>
+      <h2 style="font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-0.03em;margin-bottom:10px">Decontează direct cu 30+ asigurători</h2>
+      <p style="font-size:14px;color:var(--text3);max-width:460px;margin:0 auto 0">Prezinti cardul la recepție. Noi ne ocupam de decontare. Fără formulare, fără așteptare.</p>
+      <div class="insur-grid">
+        <div class="insur-card">Regina Maria</div>
+        <div class="insur-card">Medicover</div>
+        <div class="insur-card">Signal Iduna</div>
+        <div class="insur-card">NN Asigurări</div>
+        <div class="insur-card">Generali</div>
+        <div class="insur-card">Allianz-Tiriac</div>
+        <div class="insur-card">UNIQA</div>
+        <div class="insur-card">BCR Asigurări</div>
+        <div class="insur-card">Omniasig</div>
+        <div class="insur-card">Groupama</div>
+        <div class="insur-card">AXA Insurance</div>
+        <div class="insur-card">+ 20 alții</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1">
+    <h2>Afla exact cât costa tratamentul tau.</h2>
+    <p>Vino la consultația gratuită si primesti un deviz complet, scris, fără obligații. Stii exact costul înainte de orice decizie.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-primary" onclick="location.href='contact.html'">Consultația Gratuită &mdash; Programează</button>
+      <button class="btn-hero-ghost">Sună: 0800 123 456</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html"><svg width="16" height="16" viewBox="0 0 22 22" fill="none"><path d="M11 2.5C8 2.5 5.5 4.5 5.5 7.5C5.5 10 7 11.5 7 13C7 14.5 6.5 16 6.5 17.5C6.5 19.5 7.5 20.5 8.5 20C9.5 19.5 9.5 17.5 9.5 16C9.5 15.2 10.2 14.5 11 14.5C11.8 14.5 12.5 15.2 12.5 16C12.5 17.5 12.5 19.5 13.5 20C14.5 20.5 15.5 19.5 15.5 17.5C15.5 16 15 14.5 15 13C15 11.5 16.5 10 16.5 7.5C16.5 4.5 14 2.5 11 2.5Z" stroke="#5E6AD2" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>Med Life Dental</a>
+      <p>Clinică stomatologică premium &mdash; 15 ani de excelență in îngrijirea zâmbetelor din Romania.</p>
+    </div>
+    <div class="footer-col"><h4>Tratamente</h4><ul><li><a href="tratamente.html">Implantologie</a></li><li><a href="tratamente.html">Ortodonție</a></li><li><a href="tratamente.html">Estetică Dentara</a></li><li><a href="tratamente.html">Endodonție</a></li></ul></div>
+    <div class="footer-col"><h4>Servicii</h4><ul><li><a href="servicii.html">Smile Design 3D</a></li><li><a href="servicii.html">Parodontologie</a></li><li><a href="servicii.html">Protetică</a></li><li><a href="servicii.html">Urgențe 24/7</a></li></ul></div>
+    <div class="footer-col"><h4>Clinică</h4><ul><li><a href="echipa.html">Echipa Medicală</a></li><li><a href="tehnologie.html">Tehnologie</a></li><li><a href="preturi.html">Prețuri</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Pacient</h4><ul><li><a href="contact.html">Programare Online</a></li><li><a href="preturi.html">Asigurări</a></li><li><a href="preturi.html">Finanțare Rate</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Med Life Dental. Toate drepturile rezervate. CMR acreditată.</p>
+    <div class="footer-bottom-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Google Maps</a></div>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<button class="chat-trigger" id="chatTrigger" onclick="toggleChat()">
+  <div class="chat-pulse"></div><div class="chat-notif" id="chatNotif">1</div>
+  <svg id="chatIconOpen" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="8" width="14" height="10" rx="2" stroke="white" stroke-width="1.5"/><path d="M9 4h2a1 1 0 011 1v3H9V4z" stroke="white" stroke-width="1.5"/><path d="M13 4h2a1 1 0 011 1v3h-3V4z" stroke="white" stroke-width="1.5"/><circle cx="9.5" cy="12.5" r="1.5" fill="white"/><circle cx="14.5" cy="12.5" r="1.5" fill="white"/><path d="M9.5 15.5h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12v-1M21 12v-1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <svg id="chatIconClose" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-hdr"><div class="chat-hdr-info"><div class="chat-hdr-av">&#129302;</div><div><div class="chat-hdr-name">Med Life AI</div><div class="chat-hdr-status"><div class="chat-online-dot"></div>Online acum &bull; răspunde instant</div></div></div><button class="chat-close-btn" onclick="toggleChat()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="chat-scene"><spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="lazy" events-target="global"></spline-viewer><div class="chat-scene-label">Asistent AI</div></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-qr" id="chatQR">REPLACED</div>
+  <div class="chat-input-row"><textarea class="chat-ta" id="chatTA" placeholder="Scrie un mesaj..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();chatSend()}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea><button class="chat-send-btn" onclick="chatSend()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+</div>
+<script src="script.js"></script>
+<script>
+/* ── Chart interactive cursor ── */
+(function(){
+  var svg = document.getElementById('piwChartSvg');
+  if (!svg) return;
+  var cursorLine = document.getElementById('piwCursorLine');
+  var dotHalo    = document.getElementById('piwDotHalo');
+  var dot        = document.getElementById('piwDot');
+  var tip        = document.getElementById('piwTip');
+  var tipBg      = document.getElementById('piwTipBg');
+  var tipMonth   = document.getElementById('piwTipMonth');
+  var tipVal     = document.getElementById('piwTipVal');
+
+  var data   = [120,180,150,210,250,300,280,320,340,390,420,500];
+  var months = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+  var n = data.length, svgW = 360;
+  var step = svgW / (n - 1);
+  var yMin = 120, yRange = 380, yTop = 2, yBot = 65;
+
+  function dataY(v){ return yBot - ((v - yMin) / yRange) * (yBot - yTop); }
+  function show(el){ el.setAttribute('visibility','visible'); }
+  function hide(el){ el.setAttribute('visibility','hidden'); }
+
+  svg.addEventListener('mousemove', function(e){
+    var rect = svg.getBoundingClientRect();
+    var xSvg = Math.max(0, Math.min(svgW, (e.clientX - rect.left) / rect.width * svgW));
+
+    var fi   = xSvg / step;
+    var i    = Math.min(n - 2, Math.floor(fi));
+    var t    = fi - i;
+    /* smooth-step interpolation matches bezier control-point layout */
+    var t2   = t * t, t3 = t2 * t;
+    var ySvg = dataY(data[i]) * (1 - 3*t2 + 2*t3) + dataY(data[i+1]) * (3*t2 - 2*t3);
+
+    cursorLine.setAttribute('x1', xSvg); cursorLine.setAttribute('x2', xSvg);
+    dotHalo.setAttribute('cx', xSvg);    dotHalo.setAttribute('cy', ySvg);
+    dot.setAttribute('cx', xSvg);        dot.setAttribute('cy', ySvg);
+    show(cursorLine); show(dotHalo); show(dot);
+
+    var val  = data[i] * (1 - 3*t2 + 2*t3) + data[i+1] * (3*t2 - 2*t3);
+    var pct  = Math.round((val - yMin) / yRange * 100);
+    var mIdx = Math.max(0, Math.min(n - 1, Math.round(fi)));
+
+    var tipW = 92, tipH = 32;
+    var tipX = xSvg + 10;
+    if (tipX + tipW > svgW - 4) tipX = xSvg - tipW - 10;
+    var tipY = Math.max(2, ySvg - tipH - 7);
+
+    tipBg.setAttribute('x', tipX);       tipBg.setAttribute('y', tipY);
+    tipBg.setAttribute('width', tipW);   tipBg.setAttribute('height', tipH);
+    tipMonth.setAttribute('x', tipX + 8); tipMonth.setAttribute('y', tipY + 12);
+    tipMonth.textContent = months[mIdx];
+    tipVal.setAttribute('x', tipX + 8);   tipVal.setAttribute('y', tipY + 25);
+    tipVal.textContent = 'Interes: ' + pct + '%';
+    show(tip);
+  });
+
+  svg.addEventListener('mouseleave', function(){
+    hide(cursorLine); hide(dotHalo); hide(dot); hide(tip);
+  });
+})();
+
+/* ── Card tilt effect ── */
+(function(){
+  var card = document.getElementById('piwCard');
+  if (!card) return;
+  var leaving = false;
+  card.addEventListener('mouseenter', function(){
+    leaving = false;
+    card.style.transition = 'box-shadow 0.3s';
+  });
+  card.addEventListener('mousemove', function(e){
+    if (leaving) return;
+    card.style.transition = 'none';
+    var r  = card.getBoundingClientRect();
+    var rx = ((e.clientY - r.top  - r.height/2) / (r.height/2)) * -4.5;
+    var ry = ((e.clientX - r.left - r.width/2)  / (r.width/2))  *  6;
+    card.style.transform = 'perspective(1400px) rotateX('+rx+'deg) rotateY('+ry+'deg) scale3d(1.012,1.012,1.012)';
+    card.style.boxShadow = '0 28px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(94,106,210,0.15)';
+  });
+  card.addEventListener('mouseleave', function(){
+    leaving = true;
+    card.style.transition = 'transform 0.65s cubic-bezier(0.16,1,0.3,1), box-shadow 0.65s cubic-bezier(0.16,1,0.3,1)';
+    card.style.transform  = 'perspective(1400px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+    card.style.boxShadow  = '';
+  });
+})();
+</script>
+</body>
+</html>
